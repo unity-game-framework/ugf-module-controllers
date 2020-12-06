@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "com.ugf.package.name": {
-      "version": "file:Package",
+    "com.ugf.module.controllers": {
+      "version": "file:UGF.Module.Controllers",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}
