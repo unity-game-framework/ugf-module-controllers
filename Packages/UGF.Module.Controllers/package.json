@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "com.ugf.application": "6.0.0",
-    "com.ugf.logs": "4.1.0"
+    "com.ugf.logs": "4.1.0",
+    "com.ugf.editortools": "1.8.0"
   }
 }

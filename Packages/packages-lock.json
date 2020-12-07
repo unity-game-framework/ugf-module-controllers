@@ -46,10 +46,11 @@
       "url": "https://api.bintray.com/npm/unity-game-framework/public"
     },
     "com.ugf.editortools": {
-      "version": "file:../../ugf-editortools/Packages/UGF.EditorTools",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
+      "version": "1.8.0",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://api.bintray.com/npm/unity-game-framework/public"
     },
     "com.ugf.initialize": {
       "version": "2.6.0",
@@ -73,7 +74,8 @@
       "source": "embedded",
       "dependencies": {
         "com.ugf.application": "6.0.0",
-        "com.ugf.logs": "4.1.0"
+        "com.ugf.logs": "4.1.0",
+        "com.ugf.editortools": "1.8.0"
       }
     },
     "com.unity.ext.nunit": {
