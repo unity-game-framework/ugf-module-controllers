@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Ids;
 
 namespace UGF.Module.Controllers.Runtime
 {
     public class ControllerModuleDescription : ApplicationModuleDescription, IControllerModuleDescription
     {
-        public Dictionary<string, IControllerBuilder> Controllers { get; } = new Dictionary<string, IControllerBuilder>();
+        public Dictionary<GlobalId, IControllerBuilder> Controllers { get; } = new Dictionary<GlobalId, IControllerBuilder>();
         public bool UseReverseUninitializationOrder { get; set; } = true;
 
-        IReadOnlyDictionary<string, IControllerBuilder> IControllerModuleDescription.Controllers { get { return Controllers; } }
+        IReadOnlyDictionary<GlobalId, IControllerBuilder> IControllerModuleDescription.Controllers { get { return Controllers; } }
 
         public ControllerModuleDescription(Type registerType) : base(registerType)
         {

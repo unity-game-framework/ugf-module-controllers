@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Ids;
 using UGF.Initialize.Runtime;
 
 namespace UGF.Module.Controllers.Runtime
 {
     public class ControllerModule : ApplicationModule<ControllerModuleDescription>, IControllerModule
     {
-        public IReadOnlyDictionary<string, IController> Controllers { get; }
+        public IReadOnlyDictionary<GlobalId, IController> Controllers { get; }
 
         IControllerModuleDescription IControllerModule.Description { get { return Description; } }
 
-        private readonly Dictionary<string, IController> m_controllers = new Dictionary<string, IController>();
+        private readonly Dictionary<GlobalId, IController> m_controllers = new Dictionary<GlobalId, IController>();
         private readonly InitializeCollection<IController> m_initialize;
 
         public ControllerModule(ControllerModuleDescription description, IApplication application) : base(description, application)
         {
-            Controllers = new ReadOnlyDictionary<string, IController>(m_controllers);
+            Controllers = new ReadOnlyDictionary<GlobalId, IController>(m_controllers);
 
             m_initialize = new InitializeCollection<IController>(description.UseReverseUninitializationOrder);
         }
@@ -27,7 +28,7 @@ namespace UGF.Module.Controllers.Runtime
         {
             base.OnInitialize();
 
-            foreach (KeyValuePair<string, IControllerBuilder> pair in Description.Controllers)
+            foreach (KeyValuePair<GlobalId, IControllerBuilder> pair in Description.Controllers)
             {
                 IController controller = pair.Value.Build(Application);
 
@@ -45,24 +46,24 @@ namespace UGF.Module.Controllers.Runtime
 
             while (m_controllers.Count > 0)
             {
-                string id = m_controllers.First().Key;
+                GlobalId id = m_controllers.First().Key;
 
                 RemoveController(id);
             }
         }
 
-        public void AddController(string id, IController controller)
+        public void AddController(GlobalId id, IController controller)
         {
-            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+            if (id.IsEmpty) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
             if (controller == null) throw new ArgumentNullException(nameof(controller));
 
             m_controllers.Add(id, controller);
             m_initialize.Add(controller);
         }
 
-        public bool RemoveController(string id)
+        public bool RemoveController(GlobalId id)
         {
-            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+            if (id.IsEmpty) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
 
             if (TryGetController(id, out IController controller))
             {
@@ -75,17 +76,17 @@ namespace UGF.Module.Controllers.Runtime
             return false;
         }
 
-        public T GetController<T>(string id) where T : class, IController
+        public T GetController<T>(GlobalId id) where T : class, IController
         {
             return (T)GetController(id);
         }
 
-        public IController GetController(string id)
+        public IController GetController(GlobalId id)
         {
             return TryGetController(id, out IController controller) ? controller : throw new ArgumentException($"Controller not found by the specified id: '{id}'.");
         }
 
-        public bool TryGetController<T>(string id, out T controller) where T : class, IController
+        public bool TryGetController<T>(GlobalId id, out T controller) where T : class, IController
         {
             if (TryGetController(id, out IController value))
             {
@@ -97,9 +98,9 @@ namespace UGF.Module.Controllers.Runtime
             return false;
         }
 
-        public bool TryGetController(string id, out IController controller)
+        public bool TryGetController(GlobalId id, out IController controller)
         {
-            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+            if (id.IsEmpty) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
 
             return m_controllers.TryGetValue(id, out controller);
         }

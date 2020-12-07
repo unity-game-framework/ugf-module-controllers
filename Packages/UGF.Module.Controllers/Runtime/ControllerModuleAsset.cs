@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UGF.Application.Runtime;
-using UGF.EditorTools.Runtime.IMGUI.AssetReferences;
+using UGF.EditorTools.Runtime.Assets;
 using UnityEngine;
 
 namespace UGF.Module.Controllers.Runtime
@@ -9,10 +9,10 @@ namespace UGF.Module.Controllers.Runtime
     public class ControllerModuleAsset : ApplicationModuleAsset<IControllerModule, ControllerModuleDescription>
     {
         [SerializeField] private bool m_useReverseUninitializationOrder = true;
-        [SerializeField] private List<AssetReference<ControllerAsset>> m_controllers = new List<AssetReference<ControllerAsset>>();
+        [SerializeField] private List<AssetIdReference<ControllerAsset>> m_controllers = new List<AssetIdReference<ControllerAsset>>();
 
         public bool UseReverseUninitializationOrder { get { return m_useReverseUninitializationOrder; } set { m_useReverseUninitializationOrder = value; } }
-        public List<AssetReference<ControllerAsset>> Controllers { get { return m_controllers; } }
+        public List<AssetIdReference<ControllerAsset>> Controllers { get { return m_controllers; } }
 
         protected override IApplicationModuleDescription OnBuildDescription()
         {
@@ -23,7 +23,7 @@ namespace UGF.Module.Controllers.Runtime
 
             for (int i = 0; i < m_controllers.Count; i++)
             {
-                AssetReference<ControllerAsset> reference = m_controllers[i];
+                AssetIdReference<ControllerAsset> reference = m_controllers[i];
 
                 description.Controllers.Add(reference.Guid, reference.Asset);
             }
