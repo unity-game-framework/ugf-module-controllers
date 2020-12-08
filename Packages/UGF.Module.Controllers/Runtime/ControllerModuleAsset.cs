@@ -8,18 +8,13 @@ namespace UGF.Module.Controllers.Runtime
     [CreateAssetMenu(menuName = "Unity Game Framework/Controllers/Controller Module", order = 2000)]
     public class ControllerModuleAsset : ApplicationModuleAsset<IControllerModule, ControllerModuleDescription>
     {
-        [SerializeField] private bool m_useReverseUninitializationOrder = true;
         [SerializeField] private List<AssetIdReference<ControllerAsset>> m_controllers = new List<AssetIdReference<ControllerAsset>>();
 
-        public bool UseReverseUninitializationOrder { get { return m_useReverseUninitializationOrder; } set { m_useReverseUninitializationOrder = value; } }
         public List<AssetIdReference<ControllerAsset>> Controllers { get { return m_controllers; } }
 
         protected override IApplicationModuleDescription OnBuildDescription()
         {
-            var description = new ControllerModuleDescription(typeof(IControllerModule))
-            {
-                UseReverseUninitializationOrder = m_useReverseUninitializationOrder
-            };
+            var description = new ControllerModuleDescription(typeof(IControllerModule));
 
             for (int i = 0; i < m_controllers.Count; i++)
             {

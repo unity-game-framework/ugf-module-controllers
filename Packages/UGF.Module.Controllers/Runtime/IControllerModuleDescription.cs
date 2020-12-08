@@ -7,6 +7,5 @@ namespace UGF.Module.Controllers.Runtime
     public interface IControllerModuleDescription : IApplicationModuleDescription
     {
         IReadOnlyDictionary<GlobalId, IControllerBuilder> Controllers { get; }
-        bool UseReverseUninitializationOrder { get; }
     }
 }

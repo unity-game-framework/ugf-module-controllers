@@ -9,13 +9,11 @@ namespace UGF.Module.Controllers.Editor
     internal class ControllerModuleAssetEditor : UnityEditor.Editor
     {
         private SerializedProperty m_propertyScript;
-        private SerializedProperty m_propertyUseReverseUninitializationOrder;
         private AssetIdReferenceListDrawer m_listControllers;
 
         private void OnEnable()
         {
             m_propertyScript = serializedObject.FindProperty("m_Script");
-            m_propertyUseReverseUninitializationOrder = serializedObject.FindProperty("m_useReverseUninitializationOrder");
             m_listControllers = new AssetIdReferenceListDrawer(serializedObject.FindProperty("m_controllers"));
 
             m_listControllers.Enable();
@@ -34,8 +32,6 @@ namespace UGF.Module.Controllers.Editor
                 {
                     EditorGUILayout.PropertyField(m_propertyScript);
                 }
-
-                EditorGUILayout.PropertyField(m_propertyUseReverseUninitializationOrder);
 
                 m_listControllers.DrawGUILayout();
             }

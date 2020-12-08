@@ -8,7 +8,6 @@ namespace UGF.Module.Controllers.Runtime
     public class ControllerModuleDescription : ApplicationModuleDescription, IControllerModuleDescription
     {
         public Dictionary<GlobalId, IControllerBuilder> Controllers { get; } = new Dictionary<GlobalId, IControllerBuilder>();
-        public bool UseReverseUninitializationOrder { get; set; } = true;
 
         IReadOnlyDictionary<GlobalId, IControllerBuilder> IControllerModuleDescription.Controllers { get { return Controllers; } }
 
