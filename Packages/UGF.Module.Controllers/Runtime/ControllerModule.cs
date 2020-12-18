@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UGF.Application.Runtime;
 using UGF.EditorTools.Runtime.Ids;
+using UGF.Logs.Runtime;
 
 namespace UGF.Module.Controllers.Runtime
 {
@@ -24,6 +25,11 @@ namespace UGF.Module.Controllers.Runtime
         {
             base.OnInitialize();
 
+            Log.Debug("Controller module initialize", new
+            {
+                controllers = Description.Controllers.Count
+            });
+
             foreach (KeyValuePair<GlobalId, IControllerBuilder> pair in Description.Controllers)
             {
                 IController controller = pair.Value.Build(Application);
@@ -37,6 +43,11 @@ namespace UGF.Module.Controllers.Runtime
         protected override void OnUninitialize()
         {
             base.OnUninitialize();
+
+            Log.Debug("Controller module uninitialize", new
+            {
+                controllers = Provider.Controllers.Count
+            });
 
             Provider.Uninitialize();
             Provider.Clear();
