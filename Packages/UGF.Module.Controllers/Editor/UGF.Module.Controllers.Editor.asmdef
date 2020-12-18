@@ -1,0 +1,19 @@
+{
+    "name": "UGF.Module.Controllers.Editor",
+    "rootNamespace": "UGF.Module.Controllers.Editor",
+    "references": [
+        "GUID:da1be3aee4da18e48b169c9d8ccca92e",
+        "GUID:abdd615e45137c74ca2ce9c636c78c15"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
