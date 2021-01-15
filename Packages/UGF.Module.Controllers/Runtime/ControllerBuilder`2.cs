@@ -15,6 +15,11 @@ namespace UGF.Module.Controllers.Runtime
 
         protected abstract TController OnBuild(TDescription description, IApplication application);
 
+        T IBuilder<IApplication, IController>.Build<T>(IApplication arguments)
+        {
+            return (T)(object)Build(arguments);
+        }
+
         IController IBuilder<IApplication, IController>.Build(IApplication arguments)
         {
             return Build(arguments);
