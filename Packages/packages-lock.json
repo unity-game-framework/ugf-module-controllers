@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.ugf.application": {
-      "version": "6.0.0",
+      "version": "7.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -46,7 +46,7 @@
       "url": "https://api.bintray.com/npm/unity-game-framework/public"
     },
     "com.ugf.editortools": {
-      "version": "1.8.0",
+      "version": "1.8.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -60,7 +60,7 @@
       "url": "https://api.bintray.com/npm/unity-game-framework/public"
     },
     "com.ugf.logs": {
-      "version": "4.1.0",
+      "version": "5.0.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -73,13 +73,13 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.ugf.application": "6.0.0",
-        "com.ugf.logs": "4.1.0",
-        "com.ugf.editortools": "1.8.0"
+        "com.ugf.application": "7.0.0",
+        "com.ugf.logs": "5.0.0",
+        "com.ugf.editortools": "1.8.1"
       }
     },
     "com.unity.ext.nunit": {
-      "version": "1.0.5",
+      "version": "1.0.6",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -95,11 +95,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.1.19",
+      "version": "1.1.20",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.ext.nunit": "1.0.5",
+        "com.unity.ext.nunit": "1.0.6",
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0"
       },
