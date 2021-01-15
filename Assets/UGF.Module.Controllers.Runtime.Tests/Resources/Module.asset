@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: Module
   m_EditorClassIdentifier: 
   m_controllers:
-  - m_guid:
-      m_first: 5630805715589052298
-      m_second: 7100399218970679929
+  - m_guid: 0cecb78aa3f74e24795a355a78af8962
     m_asset: {fileID: 11400000, guid: 0cecb78aa3f74e24795a355a78af8962, type: 2}
