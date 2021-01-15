@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UGF.Application.Runtime;
-using UGF.EditorTools.Runtime.Ids;
 using UGF.Logs.Runtime;
 
 namespace UGF.Module.Controllers.Runtime
@@ -30,7 +29,7 @@ namespace UGF.Module.Controllers.Runtime
                 controllers = Description.Controllers.Count
             });
 
-            foreach (KeyValuePair<GlobalId, IControllerBuilder> pair in Description.Controllers)
+            foreach (KeyValuePair<string, IControllerBuilder> pair in Description.Controllers)
             {
                 IController controller = pair.Value.Build(Application);
 
