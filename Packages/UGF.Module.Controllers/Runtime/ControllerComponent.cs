@@ -1,9 +1,9 @@
 ﻿using UGF.Application.Runtime;
-using UGF.Description.Runtime;
+using UGF.Builder.Runtime;
 
 namespace UGF.Module.Controllers.Runtime
 {
-    public abstract class ControllerComponent : DescribedWithDescriptionBuilderComponent<IApplication, IController, IControllerDescription>, IControllerBuilder
+    public abstract class ControllerComponent : BuilderComponent<IApplication, IController>, IControllerBuilder
     {
     }
 }
