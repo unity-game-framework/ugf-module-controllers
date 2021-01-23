@@ -5,17 +5,17 @@ using UnityEngine;
 namespace UGF.Module.Controllers.Runtime.Tests
 {
     [CreateAssetMenu(menuName = "Tests/TestControllerAsset")]
-    public class TestControllerAsset : ControllerAsset<TestController>
+    public class TestControllerAsset : ControllerAsset
     {
-        protected override TestController OnBuild(ControllerDescription description, IApplication application)
+        protected override IController OnBuild(IApplication arguments)
         {
-            return new TestController(description, application);
+            return new TestController(arguments);
         }
     }
 
-    public class TestController : Controller<ControllerDescription>
+    public class TestController : ControllerBase
     {
-        public TestController(ControllerDescription description, IApplication application) : base(description, application)
+        public TestController(IApplication application) : base(application)
         {
         }
     }

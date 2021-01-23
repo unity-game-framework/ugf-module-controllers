@@ -5,19 +5,17 @@ using UGF.Initialize.Runtime;
 
 namespace UGF.Module.Controllers.Runtime
 {
-    public abstract class Controller<TDescription> : Initializable, IController where TDescription : class, IControllerDescription
+    public abstract class ControllerDescribed<TDescription> : ControllerBase, IControllerDescribed where TDescription : class, IControllerDescription
     {
         public TDescription Description { get; }
-        public IApplication Application { get; }
 
-        protected Controller(TDescription description, IApplication application) : this(description, application, new InitializeCollection<IInitialize>())
+        protected ControllerDescribed(TDescription description, IApplication application) : this(description, application, new InitializeCollection<IInitialize>())
         {
         }
 
-        protected Controller(TDescription description, IApplication application, IInitializeCollection children) : base(children)
+        protected ControllerDescribed(TDescription description, IApplication application, IInitializeCollection children) : base(application, children)
         {
             Description = description ?? throw new ArgumentNullException(nameof(description));
-            Application = application ?? throw new ArgumentNullException(nameof(application));
         }
 
         public T GetDescription<T>() where T : class, IDescription
