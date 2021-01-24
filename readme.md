@@ -4,14 +4,13 @@ UGF.Module.Controllers
 
 ## Info
 
-- **Version**: `2.0.0-preview`
+- **Version**: `2.0.0-preview.1`
 - **Unity**: `2020.2`
 - **API Compatibility Level**: `.NET Standard 2.0`
 
 ### Dependencies
 
-- `com.ugf.application`: `8.0.0-preview.1`
-- `com.ugf.editortools`: `1.8.1`
+- `com.ugf.application`: `8.0.0-preview.3`
 
 
 ### Description
