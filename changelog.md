@@ -44,4 +44,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Change `ControllerProvider` to work using provider system.
     - Remove `ControllerProvider` initialize methods.
 
+## [1.0.0](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/1.0.0) - 2021-01-15  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/1?closed=1)  
+    
+
+### Added
+
+- Add controller builders ([#5](https://github.com/unity-game-framework/ugf-module-controllers/pull/5))  
+    - Add `ControllerBuilder<TController>` and `ControllerBuilder<TController, TDescription>` builder classes.
+
+### Changed
+
+- Rework to store controllers using string ids ([#3](https://github.com/unity-game-framework/ugf-module-controllers/pull/3))  
+    - Rework provider and module to work with `string` as controller _id_ instead of `GlobalId` structure.
+
+## [0.1.0-preview](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/0.1.0-preview) - 2020-12-18  
+
+### Release Notes
+
+- No release notes.
+
 
