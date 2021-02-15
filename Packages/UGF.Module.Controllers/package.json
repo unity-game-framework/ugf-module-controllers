@@ -1,7 +1,7 @@
 {
   "name": "com.ugf.module.controllers",
   "displayName": "UGF.Module.Controllers",
-  "version": "1.0.0",
+  "version": "2.0.0-preview.1",
   "unity": "2020.2",
   "apiCompatibility": ".NET Standard 2.0",
   "description": "Module to manage multiple controllers in application.",
@@ -22,7 +22,6 @@
     "registry": "https://api.bintray.com/content/unity-game-framework/public"
   },
   "dependencies": {
-    "com.ugf.application": "7.1.0",
-    "com.ugf.editortools": "1.8.1"
+    "com.ugf.application": "8.0.0-preview.3"
   }
 }

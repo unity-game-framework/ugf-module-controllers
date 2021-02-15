@@ -5,7 +5,7 @@ using UGF.Logs.Runtime;
 
 namespace UGF.Module.Controllers.Runtime
 {
-    public class ControllerModule : ApplicationModule<ControllerModuleDescription>, IControllerModule
+    public class ControllerModule : ApplicationModule<ControllerModuleDescription>, IControllerModule, IApplicationLauncherEventHandler
     {
         public IControllerProvider Provider { get; }
 
@@ -36,7 +36,10 @@ namespace UGF.Module.Controllers.Runtime
                 Provider.Add(pair.Key, controller);
             }
 
-            Provider.Initialize();
+            foreach (KeyValuePair<string, IController> pair in Provider.Entries)
+            {
+                pair.Value.Initialize();
+            }
         }
 
         protected override void OnUninitialize()
@@ -45,11 +48,37 @@ namespace UGF.Module.Controllers.Runtime
 
             Log.Debug("Controller module uninitialize", new
             {
-                controllers = Provider.Controllers.Count
+                controllers = Provider.Entries.Count
             });
 
-            Provider.Uninitialize();
+            foreach (KeyValuePair<string, IController> pair in Provider.Entries)
+            {
+                pair.Value.Uninitialize();
+            }
+
             Provider.Clear();
+        }
+
+        void IApplicationLauncherEventHandler.OnLaunched(IApplication application)
+        {
+            foreach (KeyValuePair<string, IController> pair in Provider.Entries)
+            {
+                if (pair.Value is IApplicationLauncherEventHandler handler)
+                {
+                    handler.OnLaunched(application);
+                }
+            }
+        }
+
+        void IApplicationLauncherEventHandler.OnStopped(IApplication application)
+        {
+            foreach (KeyValuePair<string, IController> pair in Provider.Entries)
+            {
+                if (pair.Value is IApplicationLauncherEventHandler handler)
+                {
+                    handler.OnStopped(application);
+                }
+            }
         }
     }
 }

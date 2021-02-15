@@ -2,11 +2,11 @@
 
 namespace UGF.Module.Controllers.Runtime.Tests
 {
-    public class TestControllerComponent : ControllerComponent<TestController>
+    public class TestControllerComponent : ControllerComponent
     {
-        protected override TestController OnBuild(ControllerDescription description, IApplication application)
+        protected override IController OnBuild(IApplication arguments)
         {
-            return new TestController(description, application);
+            return new TestController(arguments);
         }
     }
 }
