@@ -13,8 +13,8 @@
     "type": "git",
     "url": "git://github.com/unity-game-framework/ugf-module-controllers.git"
   },
-  "changelogUrl": "https://github.com/unity-game-framework/ugf-module-controllers/blob/master/changelog.md",
-  "licensesUrl": "https://github.com/unity-game-framework/ugf-module-controllers/blob/master/license",
+  "changelogUrl": "https://github.com/unity-game-framework/ugf-module-controllers/blob/main/changelog.md",
+  "licensesUrl": "https://github.com/unity-game-framework/ugf-module-controllers/blob/main/license",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@unity-game-framework"
   },
