@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0-preview.2](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0-preview.2) - 2021-02-17  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/4?closed=1)  
+    
+
+### Changed
+
+- Update to Unity 2021.1 and publish registry ([#17](https://github.com/unity-game-framework/ugf-module-controllers/pull/17))  
+    - Update package publish registry.
+    - Update dependencies: `com.ugf.application` to `8.0.0-preview.4` version.
+    - Update project to Unity of `2021.1` version.
+
 ## [2.0.0-preview.1](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0-preview.1) - 2021-01-24  
 
 ### Release Notes
