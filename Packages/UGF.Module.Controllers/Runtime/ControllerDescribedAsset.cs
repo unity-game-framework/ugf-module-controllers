@@ -6,7 +6,7 @@ using UGF.Description.Runtime;
 namespace UGF.Module.Controllers.Runtime
 {
     public abstract class ControllerDescribedAsset<TController, TDescription> : ControllerAsset, IDescribedBuilder<IApplication>, IDescriptionBuilder
-        where TController : class, IControllerDescribed
+        where TController : class, IController
         where TDescription : class, IControllerDescription
     {
         protected override IController OnBuild(IApplication arguments)
