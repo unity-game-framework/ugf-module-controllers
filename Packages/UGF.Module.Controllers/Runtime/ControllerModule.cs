@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using UGF.Application.Runtime;
 using UGF.Logs.Runtime;
+using UGF.RuntimeTools.Runtime.Providers;
 
 namespace UGF.Module.Controllers.Runtime
 {
     public class ControllerModule : ApplicationModule<ControllerModuleDescription>, IControllerModule, IApplicationLauncherEventHandler
     {
-        public IControllerProvider Provider { get; }
+        public IProvider<string, IController> Provider { get; }
 
         IControllerModuleDescription IControllerModule.Description { get { return Description; } }
 
-        public ControllerModule(ControllerModuleDescription description, IApplication application) : this(description, application, new ControllerProvider())
+        public ControllerModule(ControllerModuleDescription description, IApplication application) : this(description, application, new Provider<string, IController>())
         {
         }
 
-        public ControllerModule(ControllerModuleDescription description, IApplication application, IControllerProvider provider) : base(description, application)
+        public ControllerModule(ControllerModuleDescription description, IApplication application, IProvider<string, IController> provider) : base(description, application)
         {
             Provider = provider ?? throw new ArgumentNullException(nameof(provider));
         }
