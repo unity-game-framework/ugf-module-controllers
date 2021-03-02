@@ -6,7 +6,7 @@ using UGF.Description.Runtime;
 namespace UGF.Module.Controllers.Runtime
 {
     public abstract class ControllerDescribedBuilder<TController, TDescription> : ControllerBuilder<TController>, IDescribedBuilder<IApplication>, IDescriptionBuilder
-        where TController : class, IControllerDescribed
+        where TController : class, IController
         where TDescription : class, IControllerDescription
     {
         protected override TController OnBuild(IApplication arguments)
@@ -28,7 +28,7 @@ namespace UGF.Module.Controllers.Runtime
 
         IDescribed IBuilder<IApplication, IDescribed>.Build(IApplication arguments)
         {
-            return Build(arguments);
+            return (IDescribed)Build(arguments);
         }
 
         T IBuilder<IDescription>.Build<T>()

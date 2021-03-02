@@ -5,7 +5,7 @@ using UGF.Initialize.Runtime;
 
 namespace UGF.Module.Controllers.Runtime
 {
-    public abstract class ControllerDescribed<TDescription> : ControllerBase, IControllerDescribed where TDescription : class, IControllerDescription
+    public abstract class ControllerDescribed<TDescription> : ControllerBase, IDescribed<TDescription> where TDescription : class, IControllerDescription
     {
         public TDescription Description { get; }
 
