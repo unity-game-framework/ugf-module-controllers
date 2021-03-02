@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0-preview.3](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0-preview.3) - 2021-03-02  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/5?closed=1)  
+    
+
+### Removed
+
+- Remove IControllerProvider interface ([#21](https://github.com/unity-game-framework/ugf-module-controllers/pull/21))  
+    - Remove `IControllerProvider` and `ControllerProvider` classes and replace by `IProvider<string, IController>` interface.
+- Remove IControllerDescribed interface ([#20](https://github.com/unity-game-framework/ugf-module-controllers/pull/20))  
+    - Remove `IControllerDescribed` interface and update dependency classes.
+
 ## [2.0.0-preview.2](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0-preview.2) - 2021-02-17  
 
 ### Release Notes
