@@ -37,6 +37,16 @@ namespace UGF.Module.Controllers.Runtime
                 Provider.Add(pair.Key, controller);
             }
 
+            foreach (IControllerCollectionDescription collection in Description.Collections)
+            {
+                foreach (KeyValuePair<string, IControllerBuilder> pair in collection.Controllers)
+                {
+                    IController controller = pair.Value.Build(Application);
+
+                    Provider.Add(pair.Key, controller);
+                }
+            }
+
             foreach (KeyValuePair<string, IController> pair in Provider.Entries)
             {
                 pair.Value.Initialize();

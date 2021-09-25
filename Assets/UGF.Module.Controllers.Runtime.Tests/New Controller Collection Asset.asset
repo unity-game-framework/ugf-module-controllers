@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1de5679fff5bc8244a38027f3b0f2c8d, type: 3}
-  m_Name: New Controller Module Asset
+  m_Script: {fileID: 11500000, guid: 112f7a176872486996125cd9edf35b60, type: 3}
+  m_Name: New Controller Collection Asset
   m_EditorClassIdentifier: 
   m_controllers:
   - m_guid: 0cecb78aa3f74e24795a355a78af8962
     m_asset: {fileID: 11400000, guid: 0cecb78aa3f74e24795a355a78af8962, type: 2}
-  m_collections:
-  - {fileID: 11400000, guid: 37795c34eabcbf54d9cc4eb928a9ed60, type: 2}
