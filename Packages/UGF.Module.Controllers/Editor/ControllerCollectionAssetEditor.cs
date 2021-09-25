@@ -1,4 +1,5 @@
-﻿using UGF.EditorTools.Editor.IMGUI.Scopes;
+﻿using UGF.EditorTools.Editor.IMGUI;
+using UGF.EditorTools.Editor.IMGUI.Scopes;
 using UGF.Module.Controllers.Runtime;
 using UnityEditor;
 
@@ -24,6 +25,8 @@ namespace UGF.Module.Controllers.Editor
         {
             using (new SerializedObjectUpdateScope(serializedObject))
             {
+                EditorIMGUIUtility.DrawScriptProperty(serializedObject);
+
                 m_listControllers.DrawGUILayout();
                 m_listControllers.DrawSelectedLayout();
             }
