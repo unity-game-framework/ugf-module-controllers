@@ -38,7 +38,7 @@ namespace UGF.Module.Controllers.Runtime
 
                 for (int j = 0; j < asset.Controllers.Count; j++)
                 {
-                    AssetReference<ControllerAsset> reference = asset.Controllers[i];
+                    AssetReference<ControllerAsset> reference = asset.Controllers[j];
 
                     collection.Controllers.Add(reference.Guid, reference.Asset);
                 }
