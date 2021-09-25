@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "com.ugf.application": {
-      "version": "8.0.0-preview.8",
+      "version": "8.0.0-preview.9",
       "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.ugf.initialize": "2.6.0",
         "com.ugf.description": "2.0.0",
-        "com.ugf.runtimetools": "2.0.0",
+        "com.ugf.runtimetools": "2.2.0",
         "com.ugf.logs": "5.1.4"
       },
       "url": "https://unitygameframework.jfrog.io/artifactory/api/npm/default"
@@ -76,11 +76,11 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.ugf.application": "8.0.0-preview.8"
+        "com.ugf.application": "8.0.0-preview.9"
       }
     },
     "com.ugf.runtimetools": {
-      "version": "2.0.0",
+      "version": "2.2.0",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
