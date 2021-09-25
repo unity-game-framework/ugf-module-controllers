@@ -15,3 +15,5 @@ MonoBehaviour:
   m_controllers:
   - m_guid: c2d5c18bfe7d70c4ca76a2ae4dad42ba
     m_asset: {fileID: 11400000, guid: c2d5c18bfe7d70c4ca76a2ae4dad42ba, type: 2}
+  - m_guid: 875860aec1dab67438c722ef61281b9f
+    m_asset: {fileID: 11400000, guid: 875860aec1dab67438c722ef61281b9f, type: 2}
