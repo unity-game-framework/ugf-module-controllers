@@ -4,7 +4,7 @@ UGF.Module.Controllers
 
 ## Info
 
-- **Version**: `2.0.0-preview.6`
+- **Version**: `2.0.0-preview.7`
 - **Unity**: `2021.1`
 - **API Compatibility Level**: `.NET Standard 2.0`
 

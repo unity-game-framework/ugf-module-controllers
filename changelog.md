@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0-preview.7](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0-preview.7) - 2021-09-25  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/9?closed=1)  
+    
+
+### Fixed
+
+- Fix controller module description creation error ([#31](https://github.com/unity-game-framework/ugf-module-controllers/pull/31))  
+    - Fix `ControllerModuleAsset` building description error while iterate through collections.
+
 ## [2.0.0-preview.6](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0-preview.6) - 2021-09-25  
 
 ### Release Notes
