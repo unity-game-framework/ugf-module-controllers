@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0-preview.6](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0-preview.6) - 2021-09-25  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/8?closed=1)  
+    
+
+### Added
+
+- Add controllers async initialization ([#29](https://github.com/unity-game-framework/ugf-module-controllers/pull/29))  
+    - Add `ControllerModule.InitializeCollection` property to manage initialization order.
+    - Add `ControllerModule.Add()` and `ControllerModule.Remove()` methods to automatically add controller to provider and initialization collection.
+    - Add `ControllerModuleDescription.UseReverseUninitializationOrder` property to determine uninitialization order.
+    - Add `IControllerAsyncInitialize` interface to implement async initialization for controller.
+- Add controller collection asset ([#28](https://github.com/unity-game-framework/ugf-module-controllers/pull/28))  
+    - Change dependencies: `com.ugf.application` to `8.0.0-preview.9` version and `com.ugf.editortools` to `1.13.1` version.
+    - Add `ControllerCollectionAsset` class as _ScriptableObject_ asset with list of controller builders.
+    - Add `ControllerCollectionDescription` class to specify collection of controller for module description.
+    - Add `ControllerModuleDescription.Collections` property to specify controller collections to create in module.
+
 ## [2.0.0-preview.5](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0-preview.5) - 2021-08-22  
 
 ### Release Notes
