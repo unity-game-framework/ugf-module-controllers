@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UGF.Application.Runtime;
 using UGF.Initialize.Runtime;
 using UGF.Logs.Runtime;
@@ -7,7 +8,7 @@ using UGF.RuntimeTools.Runtime.Providers;
 
 namespace UGF.Module.Controllers.Runtime
 {
-    public class ControllerModule : ApplicationModule<ControllerModuleDescription>, IControllerModule, IApplicationLauncherEventHandler
+    public class ControllerModule : ApplicationModule<ControllerModuleDescription>, IControllerModule, IApplicationModuleAsync, IApplicationLauncherEventHandler
     {
         public IProvider<string, IController> Provider { get; }
         public IInitializeCollection InitializeCollection { get; }
@@ -51,6 +52,19 @@ namespace UGF.Module.Controllers.Runtime
             }
 
             InitializeCollection.Initialize();
+        }
+
+        public async Task InitializeAsync()
+        {
+            for (int i = 0; i < InitializeCollection.Count; i++)
+            {
+                IInitialize initialize = InitializeCollection[i];
+
+                if (initialize is IControllerAsyncInitialize initializeAsync)
+                {
+                    await initializeAsync.InitializeAsync();
+                }
+            }
         }
 
         protected override void OnUninitialize()
