@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0) - 2021-11-26  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/10?closed=1)  
+    
+
+### Added
+
+- Add ControllerInstanceComponent ([#41](https://github.com/unity-game-framework/ugf-module-controllers/pull/41))  
+    - Add `ControllerInstanceComponent` abstract component class used to create instance of the specified controller.
+- Add ControllerAsync and ControllerDescribedAsync ([#39](https://github.com/unity-game-framework/ugf-module-controllers/pull/39))  
+    - Add `ControllerAsync` and `ControllerDescribedAsync<T>` abstract classes which implements `IControllerAsyncInitialize` interface and supports async initialization.
+- Add Application.GetController extension methods ([#38](https://github.com/unity-game-framework/ugf-module-controllers/pull/38))  
+    - Add `IApplication.AddController()` and `RemoveController()` extension methods to add and remove controller from existed `IControllerModule` in application.
+    - Add `IApplication.GetController()` methods and overloads to get controller by the specified id or controller type.
+- Add ObjectRelativesProviderController ([#37](https://github.com/unity-game-framework/ugf-module-controllers/pull/37))  
+    - Update package Unity version to `2021.2`.
+    - Update dependencies: `com.ugf.application` to `8.0.0` version.
+    - Add `ObjectRelativesController<T>` class as controller to store `ObjectRelativesProvider<T>` provider.
+
+### Changed
+
+- Change ControllerInstanceComponent ([#44](https://github.com/unity-game-framework/ugf-module-controllers/pull/44))  
+    - Add `ControllerInstanceProviderController` class as controller which stores controller builders for later instance creation.
+    - Change `ControllerInstanceComponent` to be non-abstract class and uses `ControllerInstanceProviderController` provider controller to create controller instances.
+
+### Removed
+
+- Remove ControllerCollectionDescription ([#45](https://github.com/unity-game-framework/ugf-module-controllers/pull/45))  
+    - Update `ControllerModuleDescription` class to store only collection of builders.
+    - Remove `IControllerCollectionDescription` interface and related classes.
+
 ## [2.0.0-preview.7](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0-preview.7) - 2021-09-25  
 
 ### Release Notes
