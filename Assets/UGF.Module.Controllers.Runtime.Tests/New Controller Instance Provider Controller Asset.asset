@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0057090fd02413791adc8a765147f0e, type: 3}
+  m_Name: New Controller Instance Provider Controller Asset
+  m_EditorClassIdentifier: 
+  m_controllers:
+  - m_guid: acd719b44ebcb6145b2948b3cec1161c
+    m_asset: {fileID: 11400000, guid: acd719b44ebcb6145b2948b3cec1161c, type: 2}
+  m_collections:
+  - {fileID: 11400000, guid: 37795c34eabcbf54d9cc4eb928a9ed60, type: 2}
