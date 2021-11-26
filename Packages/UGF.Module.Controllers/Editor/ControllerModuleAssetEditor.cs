@@ -1,4 +1,5 @@
 using UGF.EditorTools.Editor.IMGUI;
+using UGF.EditorTools.Editor.IMGUI.AssetReferences;
 using UGF.EditorTools.Editor.IMGUI.Scopes;
 using UGF.Module.Controllers.Runtime;
 using UnityEditor;
@@ -8,26 +9,47 @@ namespace UGF.Module.Controllers.Editor
     [CustomEditor(typeof(ControllerModuleAsset), true)]
     internal class ControllerModuleAssetEditor : UnityEditor.Editor
     {
-        private SerializedProperty m_propertyScript;
         private SerializedProperty m_propertyUseReverseUninitializationOrder;
-        private ControllerModuleControllerListDrawer m_listControllers;
-        private ControllerModuleCollectionListDrawer m_listCollections;
+        private AssetReferenceListDrawer m_listControllers;
+        private ReorderableListSelectionDrawerByPath m_listControllersSelection;
+        private ReorderableListDrawer m_listCollections;
+        private ReorderableListSelectionDrawerByElement m_listCollectionsSelection;
 
         private void OnEnable()
         {
-            m_propertyScript = serializedObject.FindProperty("m_Script");
             m_propertyUseReverseUninitializationOrder = serializedObject.FindProperty("m_useReverseUninitializationOrder");
-            m_listControllers = new ControllerModuleControllerListDrawer(serializedObject.FindProperty("m_controllers"));
-            m_listCollections = new ControllerModuleCollectionListDrawer(serializedObject.FindProperty("m_collections"));
+            m_listControllers = new AssetReferenceListDrawer(serializedObject.FindProperty("m_controllers"));
+
+            m_listControllersSelection = new ReorderableListSelectionDrawerByPath(m_listControllers, "m_asset")
+            {
+                Drawer =
+                {
+                    DisplayTitlebar = true
+                }
+            };
+
+            m_listCollections = new ReorderableListDrawer(serializedObject.FindProperty("m_collections"));
+
+            m_listCollectionsSelection = new ReorderableListSelectionDrawerByElement(m_listCollections)
+            {
+                Drawer =
+                {
+                    DisplayTitlebar = true
+                }
+            };
 
             m_listControllers.Enable();
+            m_listControllersSelection.Enable();
             m_listCollections.Enable();
+            m_listCollectionsSelection.Enable();
         }
 
         private void OnDisable()
         {
             m_listControllers.Disable();
+            m_listControllersSelection.Disable();
             m_listCollections.Disable();
+            m_listControllersSelection.Disable();
         }
 
         public override void OnInspectorGUI()
@@ -40,8 +62,8 @@ namespace UGF.Module.Controllers.Editor
                 m_listControllers.DrawGUILayout();
                 m_listCollections.DrawGUILayout();
 
-                m_listControllers.DrawSelectedLayout();
-                m_listCollections.DrawSelectedLayout();
+                m_listControllersSelection.DrawGUILayout();
+                m_listCollectionsSelection.DrawGUILayout();
             }
         }
     }
