@@ -33,17 +33,14 @@ namespace UGF.Module.Controllers.Runtime
 
             for (int i = 0; i < m_collections.Count; i++)
             {
-                ControllerCollectionAsset asset = m_collections[i];
-                var collection = new ControllerCollectionDescription();
+                ControllerCollectionAsset collection = m_collections[i];
 
-                for (int j = 0; j < asset.Controllers.Count; j++)
+                for (int j = 0; j < collection.Controllers.Count; j++)
                 {
-                    AssetReference<ControllerAsset> reference = asset.Controllers[j];
+                    AssetReference<ControllerAsset> reference = collection.Controllers[j];
 
-                    collection.Controllers.Add(reference.Guid, reference.Asset);
+                    description.Controllers.Add(reference.Guid, reference.Asset);
                 }
-
-                description.Collections.Add(collection);
             }
 
             return description;

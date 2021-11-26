@@ -34,21 +34,11 @@ namespace UGF.Module.Controllers.Runtime
                 controllers = Description.Controllers.Count
             });
 
-            foreach (KeyValuePair<string, IControllerBuilder> pair in Description.Controllers)
+            foreach ((string key, IControllerBuilder value) in Description.Controllers)
             {
-                IController controller = pair.Value.Build(Application);
+                IController controller = value.Build(Application);
 
-                Add(pair.Key, controller);
-            }
-
-            foreach (IControllerCollectionDescription collection in Description.Collections)
-            {
-                foreach (KeyValuePair<string, IControllerBuilder> pair in collection.Controllers)
-                {
-                    IController controller = pair.Value.Build(Application);
-
-                    Add(pair.Key, controller);
-                }
+                Add(key, controller);
             }
 
             InitializeCollection.Initialize();
