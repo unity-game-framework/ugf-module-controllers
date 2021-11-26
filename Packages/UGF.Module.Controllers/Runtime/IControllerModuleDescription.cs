@@ -6,6 +6,5 @@ namespace UGF.Module.Controllers.Runtime
     public interface IControllerModuleDescription : IApplicationModuleDescription
     {
         IReadOnlyDictionary<string, IControllerBuilder> Controllers { get; }
-        IReadOnlyList<IControllerCollectionDescription> Collections { get; }
     }
 }
