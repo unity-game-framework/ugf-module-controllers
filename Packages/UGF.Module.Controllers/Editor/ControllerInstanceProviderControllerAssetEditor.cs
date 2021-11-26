@@ -1,4 +1,4 @@
-using UGF.EditorTools.Editor.IMGUI;
+﻿using UGF.EditorTools.Editor.IMGUI;
 using UGF.EditorTools.Editor.IMGUI.AssetReferences;
 using UGF.EditorTools.Editor.IMGUI.Scopes;
 using UGF.Module.Controllers.Runtime;
@@ -6,10 +6,9 @@ using UnityEditor;
 
 namespace UGF.Module.Controllers.Editor
 {
-    [CustomEditor(typeof(ControllerModuleAsset), true)]
-    internal class ControllerModuleAssetEditor : UnityEditor.Editor
+    [CustomEditor(typeof(ControllerInstanceProviderControllerAsset), true)]
+    internal class ControllerInstanceProviderControllerAssetEditor : UnityEditor.Editor
     {
-        private SerializedProperty m_propertyUseReverseUninitializationOrder;
         private AssetReferenceListDrawer m_listControllers;
         private ReorderableListSelectionDrawerByPath m_listControllersSelection;
         private ReorderableListDrawer m_listCollections;
@@ -17,7 +16,6 @@ namespace UGF.Module.Controllers.Editor
 
         private void OnEnable()
         {
-            m_propertyUseReverseUninitializationOrder = serializedObject.FindProperty("m_useReverseUninitializationOrder");
             m_listControllers = new AssetReferenceListDrawer(serializedObject.FindProperty("m_controllers"));
 
             m_listControllersSelection = new ReorderableListSelectionDrawerByPath(m_listControllers, "m_asset")
@@ -57,7 +55,6 @@ namespace UGF.Module.Controllers.Editor
             using (new SerializedObjectUpdateScope(serializedObject))
             {
                 EditorIMGUIUtility.DrawScriptProperty(serializedObject);
-                EditorGUILayout.PropertyField(m_propertyUseReverseUninitializationOrder);
 
                 m_listControllers.DrawGUILayout();
                 m_listCollections.DrawGUILayout();

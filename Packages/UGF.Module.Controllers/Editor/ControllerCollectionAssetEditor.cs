@@ -1,4 +1,5 @@
 ﻿using UGF.EditorTools.Editor.IMGUI;
+using UGF.EditorTools.Editor.IMGUI.AssetReferences;
 using UGF.EditorTools.Editor.IMGUI.Scopes;
 using UGF.Module.Controllers.Runtime;
 using UnityEditor;
@@ -8,17 +9,29 @@ namespace UGF.Module.Controllers.Editor
     [CustomEditor(typeof(ControllerCollectionAsset), true)]
     internal class ControllerCollectionAssetEditor : UnityEditor.Editor
     {
-        private ControllerModuleControllerListDrawer m_listControllers;
+        private AssetReferenceListDrawer m_listControllers;
+        private ReorderableListSelectionDrawerByPath m_listControllersSelection;
 
         private void OnEnable()
         {
-            m_listControllers = new ControllerModuleControllerListDrawer(serializedObject.FindProperty("m_controllers"));
+            m_listControllers = new AssetReferenceListDrawer(serializedObject.FindProperty("m_controllers"));
+
+            m_listControllersSelection = new ReorderableListSelectionDrawerByPath(m_listControllers, "m_asset")
+            {
+                Drawer =
+                {
+                    DisplayTitlebar = true
+                }
+            };
+
             m_listControllers.Enable();
+            m_listControllersSelection.Enable();
         }
 
         private void OnDisable()
         {
             m_listControllers.Disable();
+            m_listControllersSelection.Disable();
         }
 
         public override void OnInspectorGUI()
@@ -28,7 +41,7 @@ namespace UGF.Module.Controllers.Editor
                 EditorIMGUIUtility.DrawScriptProperty(serializedObject);
 
                 m_listControllers.DrawGUILayout();
-                m_listControllers.DrawSelectedLayout();
+                m_listControllersSelection.DrawGUILayout();
             }
         }
     }
