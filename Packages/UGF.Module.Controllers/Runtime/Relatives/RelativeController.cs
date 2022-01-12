@@ -33,7 +33,7 @@ namespace UGF.Module.Controllers.Runtime.Relatives
         {
             base.OnInitialize();
 
-            m_relative = ObjectRelativesController.Provider.Get(this).Get(RelativeType);
+            m_relative = ObjectRelativesController.Provider.Get(Target).Get(RelativeType);
         }
 
         protected override void OnUninitialize()
