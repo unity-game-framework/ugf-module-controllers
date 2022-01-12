@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.1.0) - 2022-01-12  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/11?closed=1)  
+    
+
+### Added
+
+- Add relative controller ([#51](https://github.com/unity-game-framework/ugf-module-controllers/issues/51))  
+    - Add `RelativeController` and `RelativeController<T>` classes to get access to the relative object of the specified type.
+- Add controller instance component relatives collection ([#47](https://github.com/unity-game-framework/ugf-module-controllers/issues/47))  
+    - Add `ControllerInstanceComponent.Relatives` property as collection of any object to register relatives for created controller.
+- Add ControllerInstanceComponent build singleton property ([#46](https://github.com/unity-game-framework/ugf-module-controllers/issues/46))  
+    - Add `ControllerInstanceComponent.BuildAsSingleton` property to determine whether to register created controller by specified id or generate new unique id.
+    - Deprecate `ControllerInstanceComponent.BuildUnique` property, use `BuildAsSingleton` property instead.
+
 ## [2.0.0](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.0.0) - 2021-11-26  
 
 ### Release Notes
