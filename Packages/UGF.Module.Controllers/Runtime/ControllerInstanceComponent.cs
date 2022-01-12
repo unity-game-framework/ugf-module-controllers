@@ -7,10 +7,10 @@ using UnityEngine;
 namespace UGF.Module.Controllers.Runtime
 {
     [AddComponentMenu("Unity Game Framework/Controllers/Controller Instance", 2000)]
-    public class ControllerInstanceComponent : ControllerComponent
+    public partial class ControllerInstanceComponent : ControllerComponent
     {
         [SerializeField] private bool m_buildOnAwake = true;
-        [SerializeField] private bool m_buildUnique;
+        [SerializeField] private bool m_buildAsSingleton;
         [AssetGuid(typeof(ControllerInstanceProviderControllerAsset))]
         [SerializeField] private string m_provider;
         [AssetGuid(typeof(ControllerAsset))]
@@ -20,7 +20,7 @@ namespace UGF.Module.Controllers.Runtime
         [SerializeField] private string m_relativesProvider;
 
         public bool BuildOnAwake { get { return m_buildOnAwake; } set { m_buildOnAwake = value; } }
-        public bool BuildUnique { get { return m_buildUnique; } set { m_buildUnique = value; } }
+        public bool BuildAsSingleton { get { return m_buildAsSingleton; } set { m_buildAsSingleton = value; } }
         public string Provider { get { return m_provider; } set { m_provider = value; } }
         public string Controller { get { return m_controller; } set { m_controller = value; } }
         public bool RelativeToComponent { get { return m_relativeToComponent; } set { m_relativeToComponent = value; } }
@@ -44,7 +44,7 @@ namespace UGF.Module.Controllers.Runtime
         {
             if (m_buildOnAwake && gameObject.TryGetApplication(out IApplication application))
             {
-                m_instanceId = m_buildUnique ? Guid.NewGuid().ToString("N") : m_controller;
+                m_instanceId = m_buildAsSingleton ? m_controller : Guid.NewGuid().ToString("N");
                 m_instance = OnBuild(application);
                 m_instance.Application.AddController(m_instanceId, m_instance);
 
