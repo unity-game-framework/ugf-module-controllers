@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_buildOnAwake: 1
-  m_buildUnique: 0
+  m_buildAsSingleton: 1
   m_provider: c0f2de516c362c34d900829b0d5bb6ac
   m_controller: c2d5c18bfe7d70c4ca76a2ae4dad42ba
   m_relativeToComponent: 1
