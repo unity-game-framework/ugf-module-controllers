@@ -54,9 +54,12 @@ namespace UGF.Module.Controllers.Runtime
 
                 if (m_relativeToComponent)
                 {
-                    var objectRelativesController = m_instance.Application.GetController<IObjectRelativesController>(m_relativesProvider);
+                    m_instance.Application.GetController<IObjectRelativesController>(m_relativesProvider).Provider.Connect(m_instance, this);
+                }
 
-                    objectRelativesController.Provider.Connect(m_instance, this);
+                if (m_relatives.Count > 0)
+                {
+                    var objectRelativesController = m_instance.Application.GetController<IObjectRelativesController>(m_relativesProvider);
 
                     for (int i = 0; i < m_relatives.Count; i++)
                     {
@@ -79,9 +82,12 @@ namespace UGF.Module.Controllers.Runtime
 
                 if (m_relativeToComponent)
                 {
-                    var objectRelativesController = m_instance.Application.GetController<IObjectRelativesController>(m_relativesProvider);
+                    m_instance.Application.GetController<IObjectRelativesController>(m_relativesProvider).Provider.Disconnect(m_instance, this);
+                }
 
-                    objectRelativesController.Provider.Disconnect(m_instance, this);
+                if (m_relatives.Count > 0)
+                {
+                    var objectRelativesController = m_instance.Application.GetController<IObjectRelativesController>(m_relativesProvider);
 
                     for (int i = 0; i < m_relatives.Count; i++)
                     {
