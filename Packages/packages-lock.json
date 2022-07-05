@@ -80,11 +80,11 @@
       "source": "embedded",
       "dependencies": {
         "com.ugf.application": "8.2.0",
-        "com.ugf.runtimetools": "2.9.0"
+        "com.ugf.runtimetools": "2.9.1"
       }
     },
     "com.ugf.runtimetools": {
-      "version": "2.9.0",
+      "version": "2.9.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
