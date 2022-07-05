@@ -51,7 +51,7 @@ namespace UGF.Module.Controllers.Runtime
             m_initializeCollection.Clear();
         }
 
-        protected override bool OnTryGet(Type type, out object value)
+        protected override bool OnTryGet(Type type, out TController value)
         {
             foreach ((_, TController controller) in this)
             {
@@ -61,8 +61,9 @@ namespace UGF.Module.Controllers.Runtime
                     return true;
                 }
 
-                if (controller is ControllerCollectionController collection && collection.Controllers.TryGet(type, out value))
+                if (controller is ControllerCollectionController collection && collection.Controllers.TryGet(type, out IController result))
                 {
+                    value = (TController)result;
                     return true;
                 }
             }
