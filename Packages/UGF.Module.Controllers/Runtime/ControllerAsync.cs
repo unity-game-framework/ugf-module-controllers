@@ -6,6 +6,8 @@ namespace UGF.Module.Controllers.Runtime
 {
     public abstract class ControllerAsync : ControllerBase, IControllerAsyncInitialize
     {
+        public bool IsInitializedAsync { get { return m_state; } }
+
         private InitializeState m_state;
 
         protected ControllerAsync(IApplication application) : base(application)
@@ -20,7 +22,10 @@ namespace UGF.Module.Controllers.Runtime
         {
             base.OnUninitialize();
 
-            m_state = m_state.Uninitialize();
+            if (m_state)
+            {
+                m_state = m_state.Uninitialize();
+            }
         }
 
         public Task InitializeAsync()
