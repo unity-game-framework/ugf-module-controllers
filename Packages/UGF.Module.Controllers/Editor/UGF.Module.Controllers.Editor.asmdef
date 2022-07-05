@@ -3,7 +3,8 @@
     "rootNamespace": "UGF.Module.Controllers.Editor",
     "references": [
         "GUID:da1be3aee4da18e48b169c9d8ccca92e",
-        "GUID:abdd615e45137c74ca2ce9c636c78c15"
+        "GUID:abdd615e45137c74ca2ce9c636c78c15",
+        "GUID:6c7389a7d4bbed54e96eb1e71a69798e"
     ],
     "includePlatforms": [
         "Editor"
