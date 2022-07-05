@@ -30,50 +30,6 @@ namespace UGF.Module.Controllers.Runtime
             Uninitialized?.Invoke(this);
         }
 
-        public T Get<T>() where T : class, IController
-        {
-            return (T)Get(typeof(T));
-        }
-
-        public IController Get(Type type)
-        {
-            return TryGet(type, out IController controller) ? controller : throw new ArgumentException($"Controller not found by the specified type: '{type}'.");
-        }
-
-        public bool TryGet<T>(out T controller) where T : class, IController
-        {
-            if (TryGet(typeof(T), out IController value))
-            {
-                controller = (T)value;
-                return true;
-            }
-
-            controller = default;
-            return false;
-        }
-
-        public bool TryGet(Type type, out IController controller)
-        {
-            if (type == null) throw new ArgumentNullException(nameof(type));
-
-            foreach ((_, TController value) in this)
-            {
-                if (type.IsInstanceOfType(value))
-                {
-                    controller = value;
-                    return true;
-                }
-
-                if (value is ControllerCollectionController collection && collection.Controllers.TryGet(type, out controller))
-                {
-                    return true;
-                }
-            }
-
-            controller = default;
-            return false;
-        }
-
         protected override void OnAdd(string id, TController entry)
         {
             base.OnAdd(id, entry);
@@ -93,6 +49,26 @@ namespace UGF.Module.Controllers.Runtime
             base.OnClear();
 
             m_initializeCollection.Clear();
+        }
+
+        protected override bool OnTryGet(Type type, out object value)
+        {
+            foreach ((_, TController controller) in this)
+            {
+                if (type.IsInstanceOfType(controller))
+                {
+                    value = controller;
+                    return true;
+                }
+
+                if (controller is ControllerCollectionController collection && collection.Controllers.TryGet(type, out value))
+                {
+                    return true;
+                }
+            }
+
+            value = default;
+            return false;
         }
     }
 }
