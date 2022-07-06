@@ -56,7 +56,12 @@ namespace UGF.Module.Controllers.Runtime
 
         public T Get<T>() where T : class, IController
         {
-            return TryGet(out T controller) ? controller : throw new ArgumentException($"Controller not found by the specified type: '{typeof(T)}'.");
+            return (T)Get(typeof(T));
+        }
+
+        public IController Get(Type type)
+        {
+            return TryGet(type, out IController controller) ? controller : throw new ArgumentException($"Controller not found by the specified type: '{type}'.");
         }
 
         public bool TryGet<T>(out T controller) where T : class, IController
@@ -68,6 +73,25 @@ namespace UGF.Module.Controllers.Runtime
 
             controller = Controller as T;
             return controller != null;
+        }
+
+        public bool TryGet(Type type, out IController controller)
+        {
+            if (type == null) throw new ArgumentNullException(nameof(type));
+
+            if (Controller is ControllerCollectionController collection && collection.Controllers.TryGet(type, out controller))
+            {
+                return true;
+            }
+
+            if (type.IsInstanceOfType(Controller))
+            {
+                controller = Controller;
+                return true;
+            }
+
+            controller = default;
+            return false;
         }
     }
 }
