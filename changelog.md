@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.2.1](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.2.1) - 2022-07-06  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/13?closed=1)  
+    
+
+### Added
+
+- Add container controllers ([#66](https://github.com/unity-game-framework/ugf-module-controllers/issues/66))  
+    - Update dependencies: `com.ugf.runtimetools` to `2.9.1` version.
+    - Add `ContainerComponentController` abstract class to work with controller initialization from `ContainerComponent` class.
+    - Add `ContainerGameObjectController`, `ContainerPrefabController` and `ContainerSceneController` classes as implementation of `ContainerComponentController` controller.
+    - Add `ControllerInstanceController.TryGet()` and `Get()` methods with `Type` as argument.
+    - Change `ControllerCollection` class to support update `Provider<T, T>` class.
+- Add controller replacement collection ([#61](https://github.com/unity-game-framework/ugf-module-controllers/issues/61))  
+    - Add `ControllerCollectionAsset` inspector mode to edit replacement for each controller in the list.
+- Add controller collection component ([#59](https://github.com/unity-game-framework/ugf-module-controllers/issues/59))  
+    - Add `ControllerComponentExtensions.GetController()` methods to get controller related to `ControllerComponent` object.
+    - Add `ControllerCollection` class as provider of controllers with ability to initialize each controller in collection.
+    - Add `ControllerCollectionController` class as controller that create and initialize collection of other controllers.
+    - Add `ControllerCollectionControllerAsset` and `ControllerCollectionControllerComponent` classes as builders of `ControllerCollectionController` class for assets and gameobjects.
+    - Add `ControllerCollectionUtility` class with methods to work with controller component collections.
+- Add controller instance controller ([#40](https://github.com/unity-game-framework/ugf-module-controllers/issues/40))  
+    - Add `ControllerInstanceController` class to control instantiating of the controller.
+
+### Changed
+
+- Change ControllerAsync.InitializeAsync as optional ([#62](https://github.com/unity-game-framework/ugf-module-controllers/issues/62))  
+    - Update dependencies: `com.ugf.application` to `8.2.0` version.
+    - Add `IControllerAsyncInitialize.IsInitializedAsync` property to get value that determines whether async initialization has been done.
+    - Change `ControllerAsync` and `ControllerDescribedAsync` classes to make async initialization optional.
+
 ## [2.2.0](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.2.0) - 2022-07-06  
 
 ### Release Notes
