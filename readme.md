@@ -4,13 +4,14 @@ UGF.Module.Controllers
 
 ## Info
 
-- **Version**: `2.1.1`
+- **Version**: `2.2.0`
 - **Unity**: `2021.2`
 - **API Compatibility Level**: `.NET Standard 2.1`
 
 ### Dependencies
 
-- `com.ugf.application`: `8.0.0`
+- `com.ugf.application`: `8.2.0`
+- `com.ugf.runtimetools`: `2.9.1`
 
 
 ### Description
