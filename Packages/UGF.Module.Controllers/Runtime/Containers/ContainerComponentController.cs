@@ -1,68 +1,77 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UGF.Application.Runtime;
 using UGF.RuntimeTools.Runtime.Containers;
-using UGF.RuntimeTools.Runtime.Providers;
-using Object = UnityEngine.Object;
 
 namespace UGF.Module.Controllers.Runtime.Containers
 {
-    public class ContainerComponentController : ControllerBase
+    public abstract class ContainerComponentController : ControllerAsync
     {
-        public ContainerComponent Container { get; }
-        public IProvider<string, IController> Controllers { get { return m_controllers; } }
+        public ContainerComponent Container { get { return m_container ? m_container : throw new ArgumentException("Value not specified."); } }
+        public ControllerComponent Component { get { return m_component ? m_component : throw new ArgumentException("Value not specified."); } }
+        public ControllerInstanceController Instance { get { return m_instance ?? throw new ArgumentException("Value not specified."); } }
 
-        private readonly ControllerCollection<IController> m_controllers = new ControllerCollection<IController>();
+        private ContainerComponent m_container;
+        private ControllerComponent m_component;
+        private ControllerInstanceController m_instance;
 
-        public ContainerComponentController(IApplication application, ContainerComponent container) : base(application)
+        protected ContainerComponentController(IApplication application) : base(application)
         {
-            if (container == null) throw new ArgumentNullException(nameof(container));
-
-            Container = container;
         }
 
         protected override void OnInitialize()
         {
             base.OnInitialize();
 
-            for (int i = 0; i < Container.Values.Count; i++)
-            {
-                Object component = Container.Values[i];
+            m_container = OnGetContainer();
+            m_component = Container.Get<ControllerComponent>();
 
-                if (component is ControllerComponent controllerComponent)
-                {
-                    string id = controllerComponent.GetControllerId();
-                    IController controller = Application.GetController(id);
+            m_instance = new ControllerInstanceController(Application, Component.GetControllerId(), Component);
+            m_instance.Initialize();
+        }
 
-                    m_controllers.Add(id, controller);
-                }
-            }
+        protected override async Task OnInitializeAsync()
+        {
+            await base.OnInitializeAsync();
+            await Instance.InitializeAsync();
         }
 
         protected override void OnUninitialize()
         {
             base.OnUninitialize();
 
-            m_controllers.Clear();
+            OnReleaseContainer();
+
+            m_container = null;
+            m_component = null;
+            m_instance.Uninitialize();
+            m_instance = null;
+        }
+
+        protected abstract ContainerComponent OnGetContainer();
+
+        protected virtual void OnReleaseContainer()
+        {
         }
 
         public T Get<T>() where T : class, IController
         {
-            return m_controllers.Get<T>();
+            return Instance.Get<T>();
         }
 
         public IController Get(Type type)
         {
-            return TryGet(type, out IController controller) ? controller : throw new ArgumentException($"Controller not found by the specified type: '{type}'.");
+            return Instance.Get(type);
         }
 
         public bool TryGet<T>(out T controller) where T : class, IController
         {
-            return m_controllers.TryGet(out controller);
+            return Instance.TryGet(out controller);
         }
 
         public bool TryGet(Type type, out IController controller)
         {
-            return m_controllers.TryGet(type, out controller);
+            return Instance.TryGet(type, out controller);
         }
     }
 }
