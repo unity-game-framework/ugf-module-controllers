@@ -79,14 +79,17 @@
       "depth": 0,
       "source": "embedded",
       "dependencies": {
-        "com.ugf.application": "8.2.0"
+        "com.ugf.application": "8.2.0",
+        "com.ugf.runtimetools": "2.9.1"
       }
     },
     "com.ugf.runtimetools": {
-      "version": "2.8.0",
-      "depth": 2,
+      "version": "2.9.1",
+      "depth": 1,
       "source": "registry",
-      "dependencies": {},
+      "dependencies": {
+        "com.ugf.editortools": "2.5.0"
+      },
       "url": "https://unitygameframework.jfrog.io/artifactory/api/npm/default"
     },
     "com.unity.ext.nunit": {
