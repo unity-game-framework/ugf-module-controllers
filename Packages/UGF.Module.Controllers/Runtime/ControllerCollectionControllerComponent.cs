@@ -28,8 +28,10 @@ namespace UGF.Module.Controllers.Runtime
                 for (int i = 0; i < m_controllers.Count; i++)
                 {
                     ComponentReference<ControllerComponent> reference = m_controllers[i];
+                    string id = reference.Component.GetControllerId();
 
-                    description.Controllers.Add(reference.Component.GetControllerId(), reference.Component);
+                    description.Controllers.Add(id, reference.Component);
+                    description.FileIds.Add(id, reference.FileId);
                 }
             }
 
@@ -56,7 +58,10 @@ namespace UGF.Module.Controllers.Runtime
                 }
                 else
                 {
-                    description.Controllers.Add(reference.Component.GetControllerId(), reference.Component);
+                    string id = reference.Component.GetControllerId();
+
+                    description.Controllers.Add(id, reference.Component);
+                    description.FileIds.Add(id, reference.FileId);
                 }
             }
         }
