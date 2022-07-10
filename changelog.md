@@ -5,6 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0-preview](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/3.0.0-preview) - 2022-07-10  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/14?closed=1)  
+    
+
+### Added
+
+- Add controller collection store by file id ([#70](https://github.com/unity-game-framework/ugf-module-controllers/issues/70))  
+    - Update dependencies: `com.ugf.editortools` to `2.6.0` version.
+    - Add `ControllerCollectionController.TryGetByFileId()` method and overloads used to get controller by file id.
+    - Add `ControllerCollectionController.TryGetByFileId()` method to get possible controllers collection by file id.
+    - Add `ControllerCollectionControllerDescription.FileIds` property as collection of file id for each controller.
+    - Add `ControllerInstanceController.TryGet()` method and overloads used to get controller by id.
+    - Add `ContainerComponentController.TryGet()` method and overloads used to get controller by id.
+    - Add `ControllerCollectionEditorUtility` class with methods used to collect controller collections as `ComponentReference<T>` structures.
+    - Change `ControllerCollectionControllerComponent` class to store controllers using `ComponentReference<T>` structure.
+- Add controller collection combine ([#69](https://github.com/unity-game-framework/ugf-module-controllers/issues/69))  
+    - Add `ControllerCollectionControllerAsset.Combine` and `ControllerCollectionControllerComponent.Combine` properties as option to collect all nested controllers into single one.
+
 ## [2.2.1](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/2.2.1) - 2022-07-06  
 
 ### Release Notes
