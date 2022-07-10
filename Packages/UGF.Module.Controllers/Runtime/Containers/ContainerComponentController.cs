@@ -73,5 +73,25 @@ namespace UGF.Module.Controllers.Runtime.Containers
         {
             return Instance.TryGet(type, out controller);
         }
+
+        public T Get<T>(string id) where T : class, IController
+        {
+            return Instance.Get<T>(id);
+        }
+
+        public IController Get(string id)
+        {
+            return Instance.Get(id);
+        }
+
+        public bool TryGet<T>(string id, out T controller) where T : class, IController
+        {
+            return Instance.TryGet(id, out controller);
+        }
+
+        public bool TryGet(string id, out IController controller)
+        {
+            return Instance.TryGet(id, out controller);
+        }
     }
 }
