@@ -9,10 +9,12 @@ namespace UGF.Module.Controllers.Editor
     [CustomEditor(typeof(ControllerCollectionControllerComponent), true)]
     internal class ControllerCollectionControllerComponentEditor : UnityEditor.Editor
     {
+        private SerializedProperty m_propertyCombine;
         private ReorderableListDrawer m_listControllers;
 
         private void OnEnable()
         {
+            m_propertyCombine = serializedObject.FindProperty("m_combine");
             m_listControllers = new ReorderableListDrawer(serializedObject.FindProperty("m_controllers"));
             m_listControllers.Enable();
         }
@@ -27,6 +29,7 @@ namespace UGF.Module.Controllers.Editor
             using (new SerializedObjectUpdateScope(serializedObject))
             {
                 EditorIMGUIUtility.DrawScriptProperty(serializedObject);
+                EditorGUILayout.PropertyField(m_propertyCombine);
 
                 m_listControllers.DrawGUILayout();
             }
