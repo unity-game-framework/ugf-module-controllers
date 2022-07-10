@@ -93,5 +93,46 @@ namespace UGF.Module.Controllers.Runtime
             controller = default;
             return false;
         }
+
+        public T Get<T>(string id) where T : class, IController
+        {
+            return (T)Get(id);
+        }
+
+        public IController Get(string id)
+        {
+            return TryGet(id, out IController controller) ? controller : throw new ArgumentException($"Controller not found by the specified id: '{id}'.");
+        }
+
+        public bool TryGet<T>(string id, out T controller) where T : class, IController
+        {
+            if (TryGet(id, out IController value))
+            {
+                controller = (T)value;
+                return true;
+            }
+
+            controller = default;
+            return false;
+        }
+
+        public bool TryGet(string id, out IController controller)
+        {
+            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+
+            if (Id == id)
+            {
+                controller = Controller;
+                return true;
+            }
+
+            if (Controller is ControllerCollectionController collection)
+            {
+                return collection.TryGet(id, out controller);
+            }
+
+            controller = default;
+            return false;
+        }
     }
 }

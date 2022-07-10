@@ -1,4 +1,5 @@
-﻿using UGF.EditorTools.Editor.IMGUI;
+﻿using UGF.EditorTools.Editor.ComponentReferences;
+using UGF.EditorTools.Editor.IMGUI;
 using UGF.EditorTools.Editor.IMGUI.Scopes;
 using UGF.Module.Controllers.Runtime;
 using UnityEditor;
@@ -10,12 +11,12 @@ namespace UGF.Module.Controllers.Editor
     internal class ControllerCollectionControllerComponentEditor : UnityEditor.Editor
     {
         private SerializedProperty m_propertyCombine;
-        private ReorderableListDrawer m_listControllers;
+        private ComponentReferenceListDrawer m_listControllers;
 
         private void OnEnable()
         {
             m_propertyCombine = serializedObject.FindProperty("m_combine");
-            m_listControllers = new ReorderableListDrawer(serializedObject.FindProperty("m_controllers"));
+            m_listControllers = new ComponentReferenceListDrawer(serializedObject.FindProperty("m_controllers"));
             m_listControllers.Enable();
         }
 
@@ -64,7 +65,7 @@ namespace UGF.Module.Controllers.Editor
             Undo.RegisterCompleteObjectUndo(target, "Controller Collection Collect");
             EditorUtility.SetDirty(target);
 
-            ControllerCollectionUtility.GetComponents(component.Controllers, component);
+            ControllerCollectionEditorUtility.GetComponents(component.Controllers, component);
 
             serializedObject.Update();
         }
@@ -76,9 +77,9 @@ namespace UGF.Module.Controllers.Editor
             Undo.RegisterCompleteObjectUndo(target, "Controller Collection Collect in Scene");
             EditorUtility.SetDirty(target);
 
-            ControllerCollectionUtility.GetComponents(component.Controllers, component.gameObject.scene);
+            ControllerCollectionEditorUtility.GetComponents(component.Controllers, component.gameObject.scene);
 
-            component.Controllers.Remove(component);
+            component.Controllers.Remove(ControllerCollectionEditorUtility.GetReference(component));
 
             serializedObject.Update();
         }
