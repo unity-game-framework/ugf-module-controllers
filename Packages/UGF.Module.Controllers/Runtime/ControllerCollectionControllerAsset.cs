@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UGF.Application.Runtime;
-using UGF.EditorTools.Runtime.IMGUI.AssetReferences;
+using UGF.EditorTools.Runtime.Assets;
 using UnityEngine;
 
 namespace UGF.Module.Controllers.Runtime
@@ -10,10 +10,10 @@ namespace UGF.Module.Controllers.Runtime
     public class ControllerCollectionControllerAsset : ControllerDescribedAsset<ControllerCollectionController, ControllerCollectionControllerDescription>
     {
         [SerializeField] private bool m_combine = true;
-        [SerializeField] private List<AssetReference<ControllerAsset>> m_controllers = new List<AssetReference<ControllerAsset>>();
+        [SerializeField] private List<AssetIdReference<ControllerAsset>> m_controllers = new List<AssetIdReference<ControllerAsset>>();
 
         public bool Combine { get { return m_combine; } set { m_combine = value; } }
-        public List<AssetReference<ControllerAsset>> Controllers { get { return m_controllers; } set { m_controllers = value; } }
+        public List<AssetIdReference<ControllerAsset>> Controllers { get { return m_controllers; } }
 
         protected override ControllerCollectionControllerDescription OnBuildDescription()
         {
@@ -27,7 +27,7 @@ namespace UGF.Module.Controllers.Runtime
             {
                 for (int i = 0; i < m_controllers.Count; i++)
                 {
-                    AssetReference<ControllerAsset> reference = m_controllers[i];
+                    AssetIdReference<ControllerAsset> reference = m_controllers[i];
 
                     description.Controllers.Add(reference.Guid, reference.Asset);
                 }
@@ -48,7 +48,7 @@ namespace UGF.Module.Controllers.Runtime
 
             for (int i = 0; i < asset.Controllers.Count; i++)
             {
-                AssetReference<ControllerAsset> reference = asset.Controllers[i];
+                AssetIdReference<ControllerAsset> reference = asset.Controllers[i];
 
                 if (reference.Asset is ControllerCollectionControllerAsset collection)
                 {
