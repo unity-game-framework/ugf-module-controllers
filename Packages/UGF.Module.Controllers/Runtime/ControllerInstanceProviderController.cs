@@ -1,5 +1,6 @@
 ﻿using System;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Ids;
 
 namespace UGF.Module.Controllers.Runtime
 {
@@ -9,17 +10,17 @@ namespace UGF.Module.Controllers.Runtime
         {
         }
 
-        public T Build<T>(string id) where T : IController
+        public T Build<T>(GlobalId id) where T : IController
         {
             return (T)Build(id);
         }
 
-        public IController Build(string id)
+        public IController Build(GlobalId id)
         {
             return TryBuild(id, out IController controller) ? controller : throw new ArgumentException($"Controller builder not found by the specified id: '{id}'.");
         }
 
-        public bool TryBuild<T>(string id, out T controller) where T : IController
+        public bool TryBuild<T>(GlobalId id, out T controller) where T : IController
         {
             if (TryBuild(id, out IController value))
             {
@@ -31,9 +32,9 @@ namespace UGF.Module.Controllers.Runtime
             return false;
         }
 
-        public bool TryBuild(string id, out IController controller)
+        public bool TryBuild(GlobalId id, out IController controller)
         {
-            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+            if (!id.IsValid()) throw new ArgumentException("Value should be valid.", nameof(id));
 
             if (Description.Controllers.TryGetValue(id, out IControllerBuilder builder))
             {

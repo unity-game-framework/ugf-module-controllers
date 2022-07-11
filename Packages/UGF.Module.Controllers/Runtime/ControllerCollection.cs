@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
+using UGF.EditorTools.Runtime.Ids;
 using UGF.Initialize.Runtime;
 using UGF.RuntimeTools.Runtime.Providers;
 
 namespace UGF.Module.Controllers.Runtime
 {
-    public class ControllerCollection<TController> : Provider<string, TController>, IInitialize where TController : class, IController
+    public class ControllerCollection<TController> : Provider<GlobalId, TController>, IInitialize where TController : class, IController
     {
         public bool IsInitialized { get { return m_state; } }
         public bool IsInitializedAsync { get { return m_stateAsync; } }
@@ -52,14 +53,14 @@ namespace UGF.Module.Controllers.Runtime
             Uninitialized?.Invoke(this);
         }
 
-        protected override void OnAdd(string id, TController entry)
+        protected override void OnAdd(GlobalId id, TController entry)
         {
             base.OnAdd(id, entry);
 
             m_initializeCollection.Add(entry);
         }
 
-        protected override bool OnRemove(string id, TController entry)
+        protected override bool OnRemove(GlobalId id, TController entry)
         {
             m_initializeCollection.Remove(entry);
 
@@ -71,6 +72,13 @@ namespace UGF.Module.Controllers.Runtime
             base.OnClear();
 
             m_initializeCollection.Clear();
+        }
+
+        protected override bool OnTryGet(GlobalId id, out TController entry)
+        {
+            if (!id.IsValid()) throw new ArgumentException("Value should be valid.", nameof(id));
+
+            return base.OnTryGet(id, out entry);
         }
 
         protected override bool OnTryGet(Type type, out TController value)

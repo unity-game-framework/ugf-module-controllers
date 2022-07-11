@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Ids;
 using UGF.Logs.Runtime;
 using UGF.RuntimeTools.Runtime.Providers;
 
@@ -10,7 +11,7 @@ namespace UGF.Module.Controllers.Runtime
         public ControllerCollection<IController> Controllers { get; } = new ControllerCollection<IController>();
 
         IControllerModuleDescription IControllerModule.Description { get { return Description; } }
-        IProvider<string, IController> IControllerModule.Controllers { get { return Controllers; } }
+        IProvider<GlobalId, IController> IControllerModule.Controllers { get { return Controllers; } }
 
         public ControllerModule(ControllerModuleDescription description, IApplication application) : base(description, application)
         {
@@ -53,12 +54,12 @@ namespace UGF.Module.Controllers.Runtime
             Controllers.Clear();
         }
 
-        public void Add(string id, IController controller)
+        public void Add(GlobalId id, IController controller)
         {
             Controllers.Add(id, controller);
         }
 
-        public bool Remove(string id)
+        public bool Remove(GlobalId id)
         {
             return Controllers.Remove(id);
         }
