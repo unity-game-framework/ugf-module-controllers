@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using UGF.Application.Runtime;
-using UGF.Initialize.Runtime;
 using UGF.Logs.Runtime;
 using UGF.RuntimeTools.Runtime.Providers;
 
@@ -10,19 +7,13 @@ namespace UGF.Module.Controllers.Runtime
 {
     public class ControllerModule : ApplicationModule<ControllerModuleDescription>, IControllerModule, IApplicationModuleAsync, IApplicationLauncherEventHandler
     {
-        public IProvider<string, IController> Provider { get; }
-        public IInitializeCollection InitializeCollection { get; }
+        public ControllerCollection<IController> Controllers { get; } = new ControllerCollection<IController>();
 
         IControllerModuleDescription IControllerModule.Description { get { return Description; } }
+        IProvider<string, IController> IControllerModule.Controllers { get { return Controllers; } }
 
-        public ControllerModule(ControllerModuleDescription description, IApplication application) : this(description, application, new Provider<string, IController>())
+        public ControllerModule(ControllerModuleDescription description, IApplication application) : base(description, application)
         {
-        }
-
-        public ControllerModule(ControllerModuleDescription description, IApplication application, IProvider<string, IController> provider) : base(description, application)
-        {
-            Provider = provider ?? throw new ArgumentNullException(nameof(provider));
-            InitializeCollection = new InitializeCollection<IController>(Description.UseReverseUninitializationOrder);
         }
 
         protected override void OnInitialize()
@@ -41,20 +32,12 @@ namespace UGF.Module.Controllers.Runtime
                 Add(key, controller);
             }
 
-            InitializeCollection.Initialize();
+            Controllers.Initialize();
         }
 
         public async Task InitializeAsync()
         {
-            for (int i = 0; i < InitializeCollection.Count; i++)
-            {
-                IInitialize initialize = InitializeCollection[i];
-
-                if (initialize is IControllerAsyncInitialize initializeAsync)
-                {
-                    await initializeAsync.InitializeAsync();
-                }
-            }
+            await Controllers.InitializeAsync();
         }
 
         protected override void OnUninitialize()
@@ -63,43 +46,28 @@ namespace UGF.Module.Controllers.Runtime
 
             Log.Debug("Controller module uninitialize", new
             {
-                controllers = Provider.Entries.Count
+                controllers = Controllers.Entries.Count
             });
 
-            InitializeCollection.Uninitialize();
-
-            Provider.Clear();
-            InitializeCollection.Clear();
+            Controllers.Uninitialize();
+            Controllers.Clear();
         }
 
         public void Add(string id, IController controller)
         {
-            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
-            if (controller == null) throw new ArgumentNullException(nameof(controller));
-
-            Provider.Add(id, controller);
-            InitializeCollection.Add(controller);
+            Controllers.Add(id, controller);
         }
 
         public bool Remove(string id)
         {
-            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
-
-            if (Provider.TryGet(id, out IController controller))
-            {
-                Provider.Remove(id);
-                InitializeCollection.Remove(controller);
-                return true;
-            }
-
-            return false;
+            return Controllers.Remove(id);
         }
 
         void IApplicationLauncherEventHandler.OnLaunched(IApplication application)
         {
-            foreach (KeyValuePair<string, IController> pair in Provider.Entries)
+            foreach ((_, IController value) in Controllers)
             {
-                if (pair.Value is IApplicationLauncherEventHandler handler)
+                if (value is IApplicationLauncherEventHandler handler)
                 {
                     handler.OnLaunched(application);
                 }
@@ -108,9 +76,9 @@ namespace UGF.Module.Controllers.Runtime
 
         void IApplicationLauncherEventHandler.OnStopped(IApplication application)
         {
-            foreach (KeyValuePair<string, IController> pair in Provider.Entries)
+            foreach ((_, IController value) in Controllers)
             {
-                if (pair.Value is IApplicationLauncherEventHandler handler)
+                if (value is IApplicationLauncherEventHandler handler)
                 {
                     handler.OnStopped(application);
                 }

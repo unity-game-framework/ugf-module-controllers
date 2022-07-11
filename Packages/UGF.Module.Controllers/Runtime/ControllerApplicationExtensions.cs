@@ -1,6 +1,5 @@
 ﻿using System;
 using UGF.Application.Runtime;
-using UGF.RuntimeTools.Runtime.Providers;
 
 namespace UGF.Module.Controllers.Runtime
 {
@@ -10,14 +9,14 @@ namespace UGF.Module.Controllers.Runtime
         {
             if (application == null) throw new ArgumentNullException(nameof(application));
 
-            application.GetModule<IControllerModule>().Provider.Add(id, controller);
+            application.GetModule<IControllerModule>().Add(id, controller);
         }
 
         public static bool RemoveController(this IApplication application, string id)
         {
             if (application == null) throw new ArgumentNullException(nameof(application));
 
-            return application.GetModule<IControllerModule>().Provider.Remove(id);
+            return application.GetModule<IControllerModule>().Remove(id);
         }
 
         public static T GetController<T>(this IApplication application) where T : IController
@@ -56,7 +55,7 @@ namespace UGF.Module.Controllers.Runtime
         {
             if (application == null) throw new ArgumentNullException(nameof(application));
 
-            return application.GetModule<IControllerModule>().Provider.TryGet(id, out controller);
+            return application.GetModule<IControllerModule>().Controllers.TryGet(id, out controller);
         }
 
         public static bool TryGetController<T>(this IApplication application, out T controller) where T : IController
@@ -76,33 +75,7 @@ namespace UGF.Module.Controllers.Runtime
             if (application == null) throw new ArgumentNullException(nameof(application));
             if (type == null) throw new ArgumentNullException(nameof(type));
 
-            IProvider<string, IController> provider = application.GetModule<IControllerModule>().Provider;
-
-            if (provider is Provider<string, IController> providerRegular)
-            {
-                foreach ((string _, IController value) in providerRegular)
-                {
-                    if (type.IsInstanceOfType(value))
-                    {
-                        controller = value;
-                        return true;
-                    }
-                }
-            }
-            else
-            {
-                foreach ((string _, IController value) in provider.Entries)
-                {
-                    if (type.IsInstanceOfType(value))
-                    {
-                        controller = value;
-                        return true;
-                    }
-                }
-            }
-
-            controller = default;
-            return false;
+            return application.GetModule<IControllerModule>().Controllers.TryGet(type, out controller);
         }
     }
 }

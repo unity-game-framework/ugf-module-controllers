@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using UGF.Initialize.Runtime;
 using UGF.RuntimeTools.Runtime.Providers;
 
@@ -7,12 +8,14 @@ namespace UGF.Module.Controllers.Runtime
     public class ControllerCollection<TController> : Provider<string, TController>, IInitialize where TController : class, IController
     {
         public bool IsInitialized { get { return m_state; } }
+        public bool IsInitializedAsync { get { return m_stateAsync; } }
 
         public event InitializeHandler Initialized;
         public event InitializeHandler Uninitialized;
 
         private readonly InitializeCollection<IController> m_initializeCollection = new InitializeCollection<IController>();
         private InitializeState m_state;
+        private InitializeState m_stateAsync;
 
         public void Initialize()
         {
@@ -22,9 +25,28 @@ namespace UGF.Module.Controllers.Runtime
             Initialized?.Invoke(this);
         }
 
+        public async Task InitializeAsync()
+        {
+            m_stateAsync = m_stateAsync.Initialize();
+
+            foreach (IController controller in m_initializeCollection)
+            {
+                if (controller is IControllerAsyncInitialize initialize)
+                {
+                    await initialize.InitializeAsync();
+                }
+            }
+        }
+
         public void Uninitialize()
         {
             m_state = m_state.Uninitialize();
+
+            if (m_stateAsync)
+            {
+                m_stateAsync = m_stateAsync.Uninitialize();
+            }
+
             m_initializeCollection.Uninitialize();
 
             Uninitialized?.Invoke(this);
