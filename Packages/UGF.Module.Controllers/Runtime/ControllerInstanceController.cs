@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Ids;
 
 namespace UGF.Module.Controllers.Runtime
 {
     public class ControllerInstanceController : ControllerAsync
     {
-        public string Id { get; }
+        public GlobalId Id { get; }
         public IControllerBuilder Builder { get; }
         public IController Controller { get { return m_controller ?? throw new AggregateException("Value not specified."); } }
 
         private IController m_controller;
 
-        public ControllerInstanceController(IApplication application, IControllerBuilder builder) : this(application, Guid.NewGuid().ToString("N"), builder)
+        public ControllerInstanceController(IApplication application, IControllerBuilder builder) : this(application, GlobalId.Generate(), builder)
         {
         }
 
-        public ControllerInstanceController(IApplication application, string id, IControllerBuilder builder) : base(application)
+        public ControllerInstanceController(IApplication application, GlobalId id, IControllerBuilder builder) : base(application)
         {
             if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
 
@@ -94,17 +95,17 @@ namespace UGF.Module.Controllers.Runtime
             return false;
         }
 
-        public T Get<T>(string id) where T : class, IController
+        public T Get<T>(GlobalId id) where T : class, IController
         {
             return (T)Get(id);
         }
 
-        public IController Get(string id)
+        public IController Get(GlobalId id)
         {
             return TryGet(id, out IController controller) ? controller : throw new ArgumentException($"Controller not found by the specified id: '{id}'.");
         }
 
-        public bool TryGet<T>(string id, out T controller) where T : class, IController
+        public bool TryGet<T>(GlobalId id, out T controller) where T : class, IController
         {
             if (TryGet(id, out IController value))
             {
@@ -116,7 +117,7 @@ namespace UGF.Module.Controllers.Runtime
             return false;
         }
 
-        public bool TryGet(string id, out IController controller)
+        public bool TryGet(GlobalId id, out IController controller)
         {
             if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
 
