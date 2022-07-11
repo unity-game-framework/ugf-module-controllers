@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.FileIds;
+using UGF.EditorTools.Runtime.Ids;
 using UGF.RuntimeTools.Runtime.Containers;
 
 namespace UGF.Module.Controllers.Runtime.Containers
@@ -59,37 +61,42 @@ namespace UGF.Module.Controllers.Runtime.Containers
             return Instance.Get<T>();
         }
 
-        public IController Get(Type type)
-        {
-            return Instance.Get(type);
-        }
-
-        public bool TryGet<T>(out T controller) where T : class, IController
-        {
-            return Instance.TryGet(out controller);
-        }
-
-        public bool TryGet(Type type, out IController controller)
-        {
-            return Instance.TryGet(type, out controller);
-        }
-
-        public T Get<T>(string id) where T : class, IController
+        public T Get<T>(GlobalId id) where T : class, IController
         {
             return Instance.Get<T>(id);
         }
 
-        public IController Get(string id)
+        public IController Get(GlobalId id)
         {
             return Instance.Get(id);
         }
 
-        public bool TryGet<T>(string id, out T controller) where T : class, IController
+        public bool TryGet<T>(GlobalId id, out T controller) where T : class, IController
         {
             return Instance.TryGet(id, out controller);
         }
 
-        public bool TryGet(string id, out IController controller)
+        public bool TryGet(GlobalId id, out IController controller)
+        {
+            return Instance.TryGet(id, out controller);
+        }
+
+        public T Get<T>(FileId id) where T : class, IController
+        {
+            return (T)Get(id);
+        }
+
+        public IController Get(FileId id)
+        {
+            return Instance.Get(id);
+        }
+
+        public bool TryGet<T>(FileId id, out T controller) where T : class, IController
+        {
+            return Instance.TryGet(id, out controller);
+        }
+
+        public bool TryGet(FileId id, out IController controller)
         {
             return Instance.TryGet(id, out controller);
         }
