@@ -1,5 +1,6 @@
-﻿using UGF.EditorTools.Editor.IMGUI;
-using UGF.EditorTools.Editor.IMGUI.AssetReferences;
+﻿using UGF.EditorTools.Editor.Assets;
+using UGF.EditorTools.Editor.Ids;
+using UGF.EditorTools.Editor.IMGUI;
 using UGF.EditorTools.Editor.IMGUI.Attributes;
 using UGF.Module.Controllers.Runtime;
 using UnityEditor;
@@ -20,20 +21,25 @@ namespace UGF.Module.Controllers.Editor
             SerializedProperty propertyKey = serializedProperty.FindPropertyRelative(PropertyKeyName);
             SerializedProperty propertyValue = serializedProperty.FindPropertyRelative(PropertyValueName);
             string guid = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(propertyValue.objectReferenceValue));
+            string value = GlobalIdEditorUtility.GetGuidFromProperty(propertyKey);
 
-            if (propertyKey.stringValue != guid || DisplayAsReplace)
+            if (value != guid || DisplayAsReplace)
             {
                 base.OnDrawElementContent(position, serializedProperty, index, isActive, isFocused);
             }
             else
             {
-                AssetReferenceEditorGUIUtility.AssetReference(position, GUIContent.none, serializedProperty);
+                AssetIdReferenceEditorGUIUtility.AssetIdReferenceField(position, GUIContent.none, SerializedProperty);
             }
         }
 
         protected override void OnDrawKey(Rect position, SerializedProperty serializedProperty)
         {
-            AttributeEditorGUIUtility.DrawAssetGuidField(position, serializedProperty, GUIContent.none, typeof(ControllerAsset));
+            string guid = GlobalIdEditorUtility.GetGuidFromProperty(serializedProperty);
+
+            guid = AttributeEditorGUIUtility.DrawAssetGuidField(position, guid, GUIContent.none, typeof(ControllerAsset));
+
+            GlobalIdEditorUtility.SetGuidToProperty(serializedProperty, guid);
         }
     }
 }
