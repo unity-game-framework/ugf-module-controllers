@@ -1,4 +1,5 @@
 ﻿using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Ids;
 using UGF.Module.Controllers.Runtime.Objects;
 
 namespace UGF.Module.Controllers.Runtime.Relatives
@@ -11,7 +12,7 @@ namespace UGF.Module.Controllers.Runtime.Relatives
         {
         }
 
-        public RelativeController(IApplication application, string objectRelativesControllerId, object target) : base(application, objectRelativesControllerId, target, typeof(TRelative))
+        public RelativeController(IApplication application, GlobalId objectRelativesControllerId, object target) : base(application, objectRelativesControllerId, target, typeof(TRelative))
         {
         }
 
