@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Ids;
 using UnityEngine;
 
 namespace UGF.Module.Controllers.Runtime.Tests
@@ -16,7 +17,7 @@ namespace UGF.Module.Controllers.Runtime.Tests
             var module = application.GetModule<IControllerModule>();
 
             Assert.NotNull(module);
-            Assert.True(module.Controllers.Entries.ContainsKey("0cecb78aa3f74e24795a355a78af8962"));
+            Assert.True(module.Controllers.Entries.ContainsKey(new GlobalId("0cecb78aa3f74e24795a355a78af8962")));
 
             application.Uninitialize();
         }
