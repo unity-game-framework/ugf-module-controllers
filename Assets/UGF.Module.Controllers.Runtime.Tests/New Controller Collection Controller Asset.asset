@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da92e8925a34952ac3959ccbf55eb44, type: 3}
   m_Name: New Controller Collection Controller Asset
   m_EditorClassIdentifier: 
+  m_combine: 1
   m_controllers:
-  - m_guid: 0cecb78aa3f74e24795a355a78af8962
+  - m_guid:
+      m_first: 5630805715589052298
+      m_second: 7100399218970679929
     m_asset: {fileID: 11400000, guid: 0cecb78aa3f74e24795a355a78af8962, type: 2}

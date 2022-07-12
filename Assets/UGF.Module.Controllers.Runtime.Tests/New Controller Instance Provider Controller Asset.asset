@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: New Controller Instance Provider Controller Asset
   m_EditorClassIdentifier: 
   m_controllers:
-  - m_guid: acd719b44ebcb6145b2948b3cec1161c
+  - m_guid:
+      m_first: 13120198186697693620
+      m_second: 2024018176064891227
     m_asset: {fileID: 11400000, guid: acd719b44ebcb6145b2948b3cec1161c, type: 2}
   m_collections:
   - {fileID: 11400000, guid: 37795c34eabcbf54d9cc4eb928a9ed60, type: 2}

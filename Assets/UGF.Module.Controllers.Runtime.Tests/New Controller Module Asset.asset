@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de5679fff5bc8244a38027f3b0f2c8d, type: 3}
   m_Name: New Controller Module Asset
   m_EditorClassIdentifier: 
+  m_useReverseUninitializationOrder: 1
   m_controllers:
-  - m_guid: 0cecb78aa3f74e24795a355a78af8962
+  - m_guid:
+      m_first: 5630805715589052298
+      m_second: 7100399218970679929
     m_asset: {fileID: 11400000, guid: 0cecb78aa3f74e24795a355a78af8962, type: 2}
   m_collections:
   - {fileID: 11400000, guid: 37795c34eabcbf54d9cc4eb928a9ed60, type: 2}
