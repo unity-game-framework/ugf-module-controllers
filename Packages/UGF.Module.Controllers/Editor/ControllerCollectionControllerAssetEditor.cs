@@ -1,5 +1,5 @@
-﻿using UGF.EditorTools.Editor.IMGUI;
-using UGF.EditorTools.Editor.IMGUI.AssetReferences;
+﻿using UGF.EditorTools.Editor.Assets;
+using UGF.EditorTools.Editor.IMGUI;
 using UGF.EditorTools.Editor.IMGUI.Scopes;
 using UGF.Module.Controllers.Runtime;
 using UnityEditor;
@@ -10,13 +10,13 @@ namespace UGF.Module.Controllers.Editor
     internal class ControllerCollectionControllerAssetEditor : UnityEditor.Editor
     {
         private SerializedProperty m_propertyCombine;
-        private AssetReferenceListDrawer m_listControllers;
+        private AssetIdReferenceListDrawer m_listControllers;
         private ReorderableListSelectionDrawerByPath m_listControllersSelection;
 
         private void OnEnable()
         {
             m_propertyCombine = serializedObject.FindProperty("m_combine");
-            m_listControllers = new AssetReferenceListDrawer(serializedObject.FindProperty("m_controllers"));
+            m_listControllers = new AssetIdReferenceListDrawer(serializedObject.FindProperty("m_controllers"));
 
             m_listControllersSelection = new ReorderableListSelectionDrawerByPath(m_listControllers, "m_asset")
             {
