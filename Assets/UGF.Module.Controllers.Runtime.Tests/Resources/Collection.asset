@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Collection
   m_EditorClassIdentifier: 
   m_controllers:
-  - m_guid: c2d5c18bfe7d70c4ca76a2ae4dad42ba
+  - m_guid:
+      m_first: 8125899443776373131
+      m_second: 13421480388671469258
     m_asset: {fileID: 11400000, guid: c2d5c18bfe7d70c4ca76a2ae4dad42ba, type: 2}
-  - m_guid: 875860aec1dab67438c722ef61281b9f
+  - m_guid:
+      m_first: 13147346356519067822
+      m_second: 11464801677490702136
     m_asset: {fileID: 11400000, guid: 875860aec1dab67438c722ef61281b9f, type: 2}
