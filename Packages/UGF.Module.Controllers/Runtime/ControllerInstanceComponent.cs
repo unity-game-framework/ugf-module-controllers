@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Assets;
 using UGF.EditorTools.Runtime.Ids;
-using UGF.EditorTools.Runtime.IMGUI.Attributes;
 using UGF.Module.Controllers.Runtime.Objects;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -14,12 +14,12 @@ namespace UGF.Module.Controllers.Runtime
     {
         [SerializeField] private bool m_buildOnAwake = true;
         [SerializeField] private bool m_buildAsSingleton;
-        [AssetGuid(typeof(ControllerInstanceProviderControllerAsset))]
+        [AssetId(typeof(ControllerInstanceProviderControllerAsset))]
         [SerializeField] private GlobalId m_provider;
-        [AssetGuid(typeof(ControllerAsset))]
+        [AssetId(typeof(ControllerAsset))]
         [SerializeField] private GlobalId m_controller;
         [SerializeField] private bool m_relativeToComponent;
-        [AssetGuid(typeof(ObjectRelativesControllerAsset))]
+        [AssetId(typeof(ObjectRelativesControllerAsset))]
         [SerializeField] private GlobalId m_relativesProvider;
         [SerializeField] private List<Object> m_relatives = new List<Object>();
 
