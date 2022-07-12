@@ -19,7 +19,7 @@ namespace UGF.Module.Controllers.Runtime
 
         public ControllerInstanceController(IApplication application, GlobalId id, IControllerBuilder builder) : base(application)
         {
-            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+            if (!id.IsValid()) throw new ArgumentException("Value should be valid.", nameof(id));
 
             Id = id;
             Builder = builder ?? throw new ArgumentNullException(nameof(builder));

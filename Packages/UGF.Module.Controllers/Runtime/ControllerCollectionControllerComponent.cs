@@ -59,7 +59,7 @@ namespace UGF.Module.Controllers.Runtime
                 }
                 else
                 {
-                    string id = reference.Component.GetControllerId();
+                    GlobalId id = reference.Component.GetControllerId();
 
                     description.Controllers.Add(id, reference.Component);
                     description.FileIds.Add(id, reference.FileId);

@@ -56,7 +56,7 @@ namespace UGF.Module.Controllers.Runtime
 
             Controllers.Uninitialize();
 
-            foreach ((string key, _) in Controllers)
+            foreach ((GlobalId key, _) in Controllers)
             {
                 Application.RemoveController(key);
             }

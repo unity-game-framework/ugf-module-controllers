@@ -6,7 +6,7 @@ using UGF.RuntimeTools.Runtime.Providers;
 
 namespace UGF.Module.Controllers.Runtime
 {
-    public class ControllerModule : ApplicationModule<ControllerModuleDescription>, IControllerModule, IApplicationModuleAsync, IApplicationLauncherEventHandler
+    public class ControllerModule : ApplicationModuleAsync<ControllerModuleDescription>, IControllerModule, IApplicationLauncherEventHandler
     {
         public ControllerCollection<IController> Controllers { get; } = new ControllerCollection<IController>();
 
@@ -26,7 +26,7 @@ namespace UGF.Module.Controllers.Runtime
                 controllers = Description.Controllers.Count
             });
 
-            foreach ((string key, IControllerBuilder value) in Description.Controllers)
+            foreach ((GlobalId key, IControllerBuilder value) in Description.Controllers)
             {
                 IController controller = value.Build(Application);
 
@@ -36,8 +36,9 @@ namespace UGF.Module.Controllers.Runtime
             Controllers.Initialize();
         }
 
-        public async Task InitializeAsync()
+        protected override async Task OnInitializeAsync()
         {
+            await base.OnInitializeAsync();
             await Controllers.InitializeAsync();
         }
 

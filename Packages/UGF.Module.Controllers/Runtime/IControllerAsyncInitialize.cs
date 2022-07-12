@@ -1,11 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using UGF.Initialize.Runtime;
 
 namespace UGF.Module.Controllers.Runtime
 {
-    public interface IControllerAsyncInitialize
+    public interface IControllerAsyncInitialize : IInitializeAsync
     {
-        bool IsInitializedAsync { get; }
-
-        Task InitializeAsync();
     }
 }

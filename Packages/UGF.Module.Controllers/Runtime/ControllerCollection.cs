@@ -30,13 +30,7 @@ namespace UGF.Module.Controllers.Runtime
         {
             m_stateAsync = m_stateAsync.Initialize();
 
-            foreach (IController controller in m_initializeCollection)
-            {
-                if (controller is IControllerAsyncInitialize initialize)
-                {
-                    await initialize.InitializeAsync();
-                }
-            }
+            await m_initializeCollection.InitializeAsync();
         }
 
         public void Uninitialize()

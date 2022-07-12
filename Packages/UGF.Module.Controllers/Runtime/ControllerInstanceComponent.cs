@@ -30,7 +30,7 @@ namespace UGF.Module.Controllers.Runtime
         public bool RelativeToComponent { get { return m_relativeToComponent; } set { m_relativeToComponent = value; } }
         public GlobalId RelativesProvider { get { return m_relativesProvider; } set { m_relativesProvider = value; } }
         public List<Object> Relatives { get { return m_relatives; } }
-        public GlobalId InstanceId { get { return !string.IsNullOrEmpty(m_instanceId) ? m_instanceId : throw new ArgumentException("Value not specified."); } }
+        public GlobalId InstanceId { get { return m_instanceId != GlobalId.Empty ? m_instanceId : throw new ArgumentException("Value not specified."); } }
         public IController Instance { get { return m_instance ?? throw new ArgumentException("Value not specified."); } }
         public bool HasInstance { get { return m_instance != null; } }
 

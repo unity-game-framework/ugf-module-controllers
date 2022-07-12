@@ -31,7 +31,7 @@ namespace UGF.Module.Controllers.Runtime
         public static bool TryGet(this ControllerInstanceController instance, GlobalId id, out IController controller)
         {
             if (instance == null) throw new ArgumentNullException(nameof(instance));
-            if (string.IsNullOrEmpty(id)) throw new ArgumentException("Value cannot be null or empty.", nameof(id));
+            if (!id.IsValid()) throw new ArgumentException("Value should be valid.", nameof(id));
 
             if (instance.Controller is ControllerCollectionController collection)
             {
