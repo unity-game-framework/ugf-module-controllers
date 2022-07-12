@@ -76,7 +76,14 @@ namespace UGF.Module.Controllers.Runtime
             if (application == null) throw new ArgumentNullException(nameof(application));
             if (type == null) throw new ArgumentNullException(nameof(type));
 
-            return application.GetModule<IControllerModule>().Controllers.TryGet(type, out controller);
+            if (application.GetModule<IControllerModule>().Controllers.TryGet(type, out object value))
+            {
+                controller = (IController)value;
+                return true;
+            }
+
+            controller = default;
+            return false;
         }
     }
 }
