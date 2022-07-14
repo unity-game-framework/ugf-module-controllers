@@ -5,6 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0-preview.1](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview.1) - 2022-07-14  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/16?closed=1)  
+    
+
+### Added
+
+- Add tryget extensions with type only ([#75](https://github.com/unity-game-framework/ugf-module-controllers/issues/75))  
+    - Add `ControllerInstanceController.TryGet()` extension methods used to get controller by the specified type.
+    - Change `ControllerInstanceController.Get<T>()` method name to `GetController<T>()`.
+    - Remove `ControllerCollectionController.TryGet()` methods, use `Controllers` property instead.
+
+### Changed
+
+- Change to reset replace when nothing is selected ([#76](https://github.com/unity-game-framework/ugf-module-controllers/issues/76))  
+    - Change `ControllerCollectionAsset` class inspector replace to reset when _None_ is selected.
+
+### Fixed
+
+- Fix controllers async initialization queue ([#77](https://github.com/unity-game-framework/ugf-module-controllers/issues/77))  
+    - Change `ControllerModule.Controllers` property be defined as _Provider_.
+    - Change `ControllerModule` class initialization of initial controllers without ability to add new ones.
+    - Remove `ControllerCollection.TryGet()` method support for nested controller collections. 
+    - Remove `IControllerModule.Add()` and `Remove()` methods, use `Controllers` property instead.
+
 ## [4.0.0-preview](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview) - 2022-07-14  
 
 ### Release Notes
