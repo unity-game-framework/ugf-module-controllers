@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using UGF.Application.Runtime;
 using UGF.EditorTools.Runtime.Ids;
+using UGF.Initialize.Runtime;
 using UGF.Logs.Runtime;
 using UGF.RuntimeTools.Runtime.Providers;
 
@@ -8,10 +9,12 @@ namespace UGF.Module.Controllers.Runtime
 {
     public class ControllerModule : ApplicationModuleAsync<ControllerModuleDescription>, IControllerModule, IApplicationLauncherEventHandler
     {
-        public ControllerCollection<IController> Controllers { get; } = new ControllerCollection<IController>();
+        public Provider<GlobalId, IController> Controllers { get; } = new Provider<GlobalId, IController>();
 
         IControllerModuleDescription IControllerModule.Description { get { return Description; } }
         IProvider<GlobalId, IController> IControllerModule.Controllers { get { return Controllers; } }
+
+        private readonly InitializeCollection<IController> m_initializeCollection = new InitializeCollection<IController>();
 
         public ControllerModule(ControllerModuleDescription description, IApplication application) : base(description, application)
         {
@@ -30,16 +33,18 @@ namespace UGF.Module.Controllers.Runtime
             {
                 IController controller = value.Build(Application);
 
-                Add(key, controller);
+                Controllers.Add(key, controller);
+
+                m_initializeCollection.Add(controller);
             }
 
-            Controllers.Initialize();
+            m_initializeCollection.Initialize();
         }
 
         protected override async Task OnInitializeAsync()
         {
             await base.OnInitializeAsync();
-            await Controllers.InitializeAsync();
+            await m_initializeCollection.InitializeAsync();
         }
 
         protected override void OnUninitialize()
@@ -51,18 +56,10 @@ namespace UGF.Module.Controllers.Runtime
                 controllers = Controllers.Entries.Count
             });
 
-            Controllers.Uninitialize();
+            m_initializeCollection.Uninitialize();
+            m_initializeCollection.Clear();
+
             Controllers.Clear();
-        }
-
-        public void Add(GlobalId id, IController controller)
-        {
-            Controllers.Add(id, controller);
-        }
-
-        public bool Remove(GlobalId id)
-        {
-            return Controllers.Remove(id);
         }
 
         void IApplicationLauncherEventHandler.OnLaunched(IApplication application)
