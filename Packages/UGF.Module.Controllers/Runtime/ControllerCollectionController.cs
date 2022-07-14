@@ -66,33 +66,6 @@ namespace UGF.Module.Controllers.Runtime
             m_fileIds.Clear();
         }
 
-        public T Get<T>(GlobalId id) where T : class, IController
-        {
-            return (T)Get(id);
-        }
-
-        public IController Get(GlobalId id)
-        {
-            return TryGet(id, out IController controller) ? controller : throw new ArgumentException($"Controller not found by the specified id: '{id}'.");
-        }
-
-        public bool TryGet<T>(GlobalId id, out T controller) where T : class, IController
-        {
-            if (TryGet(id, out IController value))
-            {
-                controller = (T)value;
-                return true;
-            }
-
-            controller = default;
-            return false;
-        }
-
-        public bool TryGet(GlobalId id, out IController controller)
-        {
-            return Controllers.TryGet(id, out controller);
-        }
-
         public T Get<T>(FileId id) where T : class, IController
         {
             return (T)Get(id);
