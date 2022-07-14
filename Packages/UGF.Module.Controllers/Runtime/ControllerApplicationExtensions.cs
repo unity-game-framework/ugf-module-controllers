@@ -10,14 +10,14 @@ namespace UGF.Module.Controllers.Runtime
         {
             if (application == null) throw new ArgumentNullException(nameof(application));
 
-            application.GetModule<IControllerModule>().Add(id, controller);
+            application.GetModule<IControllerModule>().Controllers.Add(id, controller);
         }
 
         public static bool RemoveController(this IApplication application, GlobalId id)
         {
             if (application == null) throw new ArgumentNullException(nameof(application));
 
-            return application.GetModule<IControllerModule>().Remove(id);
+            return application.GetModule<IControllerModule>().Controllers.Remove(id);
         }
 
         public static T GetController<T>(this IApplication application) where T : IController

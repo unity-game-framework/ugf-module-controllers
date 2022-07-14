@@ -8,8 +8,5 @@ namespace UGF.Module.Controllers.Runtime
     {
         new IControllerModuleDescription Description { get; }
         IProvider<GlobalId, IController> Controllers { get; }
-
-        void Add(GlobalId id, IController controller);
-        bool Remove(GlobalId id);
     }
 }

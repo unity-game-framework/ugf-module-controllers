@@ -74,26 +74,5 @@ namespace UGF.Module.Controllers.Runtime
 
             return base.OnTryGet(id, out entry);
         }
-
-        protected override bool OnTryGet(Type type, out TController value)
-        {
-            foreach ((_, TController controller) in this)
-            {
-                if (type.IsInstanceOfType(controller))
-                {
-                    value = controller;
-                    return true;
-                }
-
-                if (controller is ControllerCollectionController collection && collection.Controllers.TryGet(type, out IController result))
-                {
-                    value = (TController)result;
-                    return true;
-                }
-            }
-
-            value = default;
-            return false;
-        }
     }
 }
