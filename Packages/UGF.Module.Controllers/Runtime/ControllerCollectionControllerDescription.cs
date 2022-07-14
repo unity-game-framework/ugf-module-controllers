@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using UGF.EditorTools.Runtime.FileIds;
+using UGF.EditorTools.Runtime.Ids;
 
 namespace UGF.Module.Controllers.Runtime
 {
     public class ControllerCollectionControllerDescription : ControllerDescription
     {
-        public Dictionary<string, IControllerBuilder> Controllers { get; } = new Dictionary<string, IControllerBuilder>();
-        public Dictionary<string, string> FileIds { get; } = new Dictionary<string, string>();
+        public Dictionary<GlobalId, IControllerBuilder> Controllers { get; } = new Dictionary<GlobalId, IControllerBuilder>();
+        public Dictionary<GlobalId, FileId> FileIds { get; } = new Dictionary<GlobalId, FileId>();
     }
 }

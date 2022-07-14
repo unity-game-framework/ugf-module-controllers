@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using UGF.Application.Runtime;
-using UGF.EditorTools.Runtime.IMGUI.Attributes;
+using UGF.EditorTools.Runtime.Assets;
+using UGF.EditorTools.Runtime.Ids;
 using UGF.Module.Controllers.Runtime.Objects;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -9,31 +10,31 @@ using Object = UnityEngine.Object;
 namespace UGF.Module.Controllers.Runtime
 {
     [AddComponentMenu("Unity Game Framework/Controllers/Controller Instance", 2000)]
-    public partial class ControllerInstanceComponent : ControllerComponent
+    public class ControllerInstanceComponent : ControllerComponent
     {
         [SerializeField] private bool m_buildOnAwake = true;
         [SerializeField] private bool m_buildAsSingleton;
-        [AssetGuid(typeof(ControllerInstanceProviderControllerAsset))]
-        [SerializeField] private string m_provider;
-        [AssetGuid(typeof(ControllerAsset))]
-        [SerializeField] private string m_controller;
+        [AssetId(typeof(ControllerInstanceProviderControllerAsset))]
+        [SerializeField] private GlobalId m_provider;
+        [AssetId(typeof(ControllerAsset))]
+        [SerializeField] private GlobalId m_controller;
         [SerializeField] private bool m_relativeToComponent;
-        [AssetGuid(typeof(ObjectRelativesControllerAsset))]
-        [SerializeField] private string m_relativesProvider;
+        [AssetId(typeof(ObjectRelativesControllerAsset))]
+        [SerializeField] private GlobalId m_relativesProvider;
         [SerializeField] private List<Object> m_relatives = new List<Object>();
 
         public bool BuildOnAwake { get { return m_buildOnAwake; } set { m_buildOnAwake = value; } }
         public bool BuildAsSingleton { get { return m_buildAsSingleton; } set { m_buildAsSingleton = value; } }
-        public string Provider { get { return m_provider; } set { m_provider = value; } }
-        public string Controller { get { return m_controller; } set { m_controller = value; } }
+        public GlobalId Provider { get { return m_provider; } set { m_provider = value; } }
+        public GlobalId Controller { get { return m_controller; } set { m_controller = value; } }
         public bool RelativeToComponent { get { return m_relativeToComponent; } set { m_relativeToComponent = value; } }
-        public string RelativesProvider { get { return m_relativesProvider; } set { m_relativesProvider = value; } }
+        public GlobalId RelativesProvider { get { return m_relativesProvider; } set { m_relativesProvider = value; } }
         public List<Object> Relatives { get { return m_relatives; } }
-        public string InstanceId { get { return !string.IsNullOrEmpty(m_instanceId) ? m_instanceId : throw new ArgumentException("Value not specified."); } }
+        public GlobalId InstanceId { get { return m_instanceId != GlobalId.Empty ? m_instanceId : throw new ArgumentException("Value not specified."); } }
         public IController Instance { get { return m_instance ?? throw new ArgumentException("Value not specified."); } }
         public bool HasInstance { get { return m_instance != null; } }
 
-        private string m_instanceId;
+        private GlobalId m_instanceId;
         private IController m_instance;
 
         protected override IController OnBuild(IApplication application)
@@ -48,7 +49,7 @@ namespace UGF.Module.Controllers.Runtime
         {
             if (m_buildOnAwake && gameObject.TryGetApplication(out IApplication application))
             {
-                m_instanceId = m_buildAsSingleton ? m_controller : Guid.NewGuid().ToString("N");
+                m_instanceId = m_buildAsSingleton ? m_controller : GlobalId.Generate();
                 m_instance = OnBuild(application);
                 m_instance.Application.AddController(m_instanceId, m_instance);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UGF.Application.Runtime;
 using UGF.EditorTools.Runtime.ComponentReferences;
+using UGF.EditorTools.Runtime.Ids;
 using UnityEngine;
 
 namespace UGF.Module.Controllers.Runtime
@@ -10,10 +11,10 @@ namespace UGF.Module.Controllers.Runtime
     public class ControllerCollectionControllerComponent : ControllerDescribedComponent<ControllerCollectionController, ControllerCollectionControllerDescription>
     {
         [SerializeField] private bool m_combine = true;
-        [SerializeField] private List<ComponentReference<ControllerComponent>> m_controllers = new List<ComponentReference<ControllerComponent>>();
+        [SerializeField] private List<ComponentIdReference<ControllerComponent>> m_controllers = new List<ComponentIdReference<ControllerComponent>>();
 
         public bool Combine { get { return m_combine; } set { m_combine = value; } }
-        public List<ComponentReference<ControllerComponent>> Controllers { get { return m_controllers; } set { m_controllers = value; } }
+        public List<ComponentIdReference<ControllerComponent>> Controllers { get { return m_controllers; } }
 
         protected override ControllerCollectionControllerDescription OnBuildDescription()
         {
@@ -27,8 +28,8 @@ namespace UGF.Module.Controllers.Runtime
             {
                 for (int i = 0; i < m_controllers.Count; i++)
                 {
-                    ComponentReference<ControllerComponent> reference = m_controllers[i];
-                    string id = reference.Component.GetControllerId();
+                    ComponentIdReference<ControllerComponent> reference = m_controllers[i];
+                    GlobalId id = reference.Component.GetControllerId();
 
                     description.Controllers.Add(id, reference.Component);
                     description.FileIds.Add(id, reference.FileId);
@@ -50,7 +51,7 @@ namespace UGF.Module.Controllers.Runtime
 
             for (int i = 0; i < component.Controllers.Count; i++)
             {
-                ComponentReference<ControllerComponent> reference = component.Controllers[i];
+                ComponentIdReference<ControllerComponent> reference = component.Controllers[i];
 
                 if (reference.Component is ControllerCollectionControllerComponent collection)
                 {
@@ -58,7 +59,7 @@ namespace UGF.Module.Controllers.Runtime
                 }
                 else
                 {
-                    string id = reference.Component.GetControllerId();
+                    GlobalId id = reference.Component.GetControllerId();
 
                     description.Controllers.Add(id, reference.Component);
                     description.FileIds.Add(id, reference.FileId);

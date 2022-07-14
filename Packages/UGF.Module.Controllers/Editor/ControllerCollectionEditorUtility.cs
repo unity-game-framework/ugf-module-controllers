@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UGF.EditorTools.Editor.FileIds;
 using UGF.EditorTools.Runtime.ComponentReferences;
+using UGF.EditorTools.Runtime.FileIds;
 using UGF.Module.Controllers.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,7 @@ namespace UGF.Module.Controllers.Editor
 {
     public static class ControllerCollectionEditorUtility
     {
-        public static void GetComponents(ICollection<ComponentReference<ControllerComponent>> components, Scene scene)
+        public static void GetComponents(ICollection<ComponentIdReference<ControllerComponent>> components, Scene scene)
         {
             if (!scene.IsValid()) throw new ArgumentException("Value should be valid.", nameof(scene));
 
@@ -22,7 +23,7 @@ namespace UGF.Module.Controllers.Editor
             }
         }
 
-        public static void GetComponents(ICollection<ComponentReference<ControllerComponent>> components, ControllerComponent component)
+        public static void GetComponents(ICollection<ComponentIdReference<ControllerComponent>> components, ControllerComponent component)
         {
             if (component == null) throw new ArgumentNullException(nameof(component));
 
@@ -36,7 +37,7 @@ namespace UGF.Module.Controllers.Editor
             components.Remove(GetReference(component));
         }
 
-        public static void GetComponents(ICollection<ComponentReference<ControllerComponent>> components, GameObject gameObject)
+        public static void GetComponents(ICollection<ComponentIdReference<ControllerComponent>> components, GameObject gameObject)
         {
             if (components == null) throw new ArgumentNullException(nameof(components));
             if (gameObject == null) throw new ArgumentNullException(nameof(gameObject));
@@ -56,16 +57,16 @@ namespace UGF.Module.Controllers.Editor
             }
         }
 
-        internal static ComponentReference<ControllerComponent> GetReference(ControllerComponent component)
+        internal static ComponentIdReference<ControllerComponent> GetReference(ControllerComponent component)
         {
             if (component == null) throw new ArgumentNullException(nameof(component));
 
-            string fileId = FileIdEditorUtility.GetFileId(component).ToString();
+            ulong id = FileIdEditorUtility.GetFileId(component);
 
-            return new ComponentReference<ControllerComponent>(fileId, component);
+            return new ComponentIdReference<ControllerComponent>(new FileId(id), component);
         }
 
-        private static void GetComponentsInChildren(ICollection<ComponentReference<ControllerComponent>> components, Transform transform, List<ControllerComponent> buffer)
+        private static void GetComponentsInChildren(ICollection<ComponentIdReference<ControllerComponent>> components, Transform transform, List<ControllerComponent> buffer)
         {
             if (components == null) throw new ArgumentNullException(nameof(components));
             if (transform == null) throw new ArgumentNullException(nameof(transform));
@@ -88,7 +89,7 @@ namespace UGF.Module.Controllers.Editor
             }
         }
 
-        private static void GetComponents(ICollection<ComponentReference<ControllerComponent>> components, GameObject gameObject, List<ControllerComponent> buffer)
+        private static void GetComponents(ICollection<ComponentIdReference<ControllerComponent>> components, GameObject gameObject, List<ControllerComponent> buffer)
         {
             if (components == null) throw new ArgumentNullException(nameof(components));
             if (gameObject == null) throw new ArgumentNullException(nameof(gameObject));

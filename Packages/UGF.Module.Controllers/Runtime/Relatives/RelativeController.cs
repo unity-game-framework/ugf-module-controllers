@@ -1,5 +1,6 @@
 ﻿using System;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Ids;
 using UGF.Initialize.Runtime;
 using UGF.Module.Controllers.Runtime.Objects;
 
@@ -18,7 +19,7 @@ namespace UGF.Module.Controllers.Runtime.Relatives
         {
         }
 
-        public RelativeController(IApplication application, string objectRelativesControllerId, object target, Type relativeType) : this(application, application.GetController<IObjectRelativesController>(objectRelativesControllerId), target, relativeType)
+        public RelativeController(IApplication application, GlobalId objectRelativesControllerId, object target, Type relativeType) : this(application, application.GetController<IObjectRelativesController>(objectRelativesControllerId), target, relativeType)
         {
         }
 

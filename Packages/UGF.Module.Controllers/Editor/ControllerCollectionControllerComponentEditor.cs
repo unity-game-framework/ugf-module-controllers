@@ -11,12 +11,12 @@ namespace UGF.Module.Controllers.Editor
     internal class ControllerCollectionControllerComponentEditor : UnityEditor.Editor
     {
         private SerializedProperty m_propertyCombine;
-        private ComponentReferenceListDrawer m_listControllers;
+        private ComponentIdReferenceListDrawer m_listControllers;
 
         private void OnEnable()
         {
             m_propertyCombine = serializedObject.FindProperty("m_combine");
-            m_listControllers = new ComponentReferenceListDrawer(serializedObject.FindProperty("m_controllers"));
+            m_listControllers = new ComponentIdReferenceListDrawer(serializedObject.FindProperty("m_controllers"));
             m_listControllers.Enable();
         }
 

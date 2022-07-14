@@ -1,11 +1,12 @@
 ﻿using System;
 using UGF.Application.Runtime;
+using UGF.EditorTools.Runtime.Ids;
 
 namespace UGF.Module.Controllers.Runtime
 {
     public static class ControllerComponentExtensions
     {
-        public static string GetControllerId(this ControllerComponent component)
+        public static GlobalId GetControllerId(this ControllerComponent component)
         {
             return ControllerUtility.GetId(component);
         }
@@ -36,7 +37,7 @@ namespace UGF.Module.Controllers.Runtime
         {
             if (component == null) throw new ArgumentNullException(nameof(component));
 
-            string id = GetControllerId(component);
+            GlobalId id = GetControllerId(component);
             return component.gameObject.GetApplication().TryGetController(id, out controller);
         }
     }

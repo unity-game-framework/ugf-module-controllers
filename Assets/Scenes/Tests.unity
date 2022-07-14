@@ -156,9 +156,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_combine: 1
   m_controllers:
-  - m_fileId: 340019273
+  - m_fileId:
+      m_value: 340019275
+    m_component: {fileID: 340019275}
+  - m_fileId:
+      m_value: 1778541605
+    m_component: {fileID: 1778541605}
+  - m_fileId:
+      m_value: 28873154
     m_component: {fileID: 28873154}
-  - m_fileId: 340019274
+  - m_fileId:
+      m_value: 28873153
     m_component: {fileID: 28873153}
 --- !u!114 &28873153
 MonoBehaviour:
@@ -174,10 +182,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_buildOnAwake: 1
   m_buildAsSingleton: 1
-  m_provider: c0f2de516c362c34d900829b0d5bb6ac
-  m_controller: c2d5c18bfe7d70c4ca76a2ae4dad42ba
+  m_provider:
+    m_first: 0
+    m_second: 0
+  m_controller:
+    m_first: 0
+    m_second: 0
   m_relativeToComponent: 1
-  m_relativesProvider: acd719b44ebcb6145b2948b3cec1161c
+  m_relativesProvider:
+    m_first: 0
+    m_second: 0
   m_relatives: []
 --- !u!114 &28873154
 MonoBehaviour:
@@ -266,10 +280,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_buildOnAwake: 1
   m_buildAsSingleton: 1
-  m_provider: c0f2de516c362c34d900829b0d5bb6ac
-  m_controller: c2d5c18bfe7d70c4ca76a2ae4dad42ba
+  m_provider:
+    m_first: 3185289818878959185
+    m_second: 12445234734286635225
+  m_controller:
+    m_first: 8125899443776373131
+    m_second: 13421480388671469258
   m_relativeToComponent: 1
-  m_relativesProvider: acd719b44ebcb6145b2948b3cec1161c
+  m_relativesProvider:
+    m_first: 13120198186697693620
+    m_second: 2024018176064891227
   m_relatives: []
 --- !u!114 &340019275
 MonoBehaviour:
@@ -285,13 +305,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_combine: 1
   m_controllers:
-  - m_fileId: 1778541605
+  - m_fileId:
+      m_value: 1778541605
     m_component: {fileID: 1778541605}
-  - m_fileId: 28873152
+  - m_fileId:
+      m_value: 28873152
     m_component: {fileID: 28873152}
-  - m_fileId: 340019273
+  - m_fileId:
+      m_value: 340019273
     m_component: {fileID: 340019273}
-  - m_fileId: 340019274
+  - m_fileId:
+      m_value: 340019274
     m_component: {fileID: 340019274}
 --- !u!1 &1778541604
 GameObject:
@@ -326,9 +350,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_combine: 1
   m_controllers:
-  - m_fileId: 340019273
+  - m_fileId:
+      m_value: 1778541607
     m_component: {fileID: 1778541607}
-  - m_fileId: 340019274
+  - m_fileId:
+      m_value: 1778541606
     m_component: {fileID: 1778541606}
 --- !u!114 &1778541606
 MonoBehaviour:
@@ -344,10 +370,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_buildOnAwake: 1
   m_buildAsSingleton: 1
-  m_provider: c0f2de516c362c34d900829b0d5bb6ac
-  m_controller: c2d5c18bfe7d70c4ca76a2ae4dad42ba
+  m_provider:
+    m_first: 0
+    m_second: 0
+  m_controller:
+    m_first: 0
+    m_second: 0
   m_relativeToComponent: 1
-  m_relativesProvider: acd719b44ebcb6145b2948b3cec1161c
+  m_relativesProvider:
+    m_first: 0
+    m_second: 0
   m_relatives: []
 --- !u!114 &1778541607
 MonoBehaviour:
