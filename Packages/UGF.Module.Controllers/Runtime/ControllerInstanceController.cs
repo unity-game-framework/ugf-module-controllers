@@ -55,7 +55,7 @@ namespace UGF.Module.Controllers.Runtime
             Application.RemoveController(Id);
         }
 
-        public T Get<T>() where T : class, IController
+        public T GetController<T>() where T : class, IController
         {
             return (T)Controller;
         }
