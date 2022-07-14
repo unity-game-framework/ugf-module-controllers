@@ -26,7 +26,7 @@ namespace UGF.Module.Controllers.Editor
             GlobalId idKey = GlobalIdEditorUtility.GetGlobalIdFromProperty(propertyKey);
             GlobalId idAsset = !string.IsNullOrEmpty(guid) && GlobalId.TryParse(guid, out GlobalId result) ? result : GlobalId.Empty;
 
-            if (idKey != idAsset || DisplayAsReplace)
+            if ((idKey != GlobalId.Empty && idKey != idAsset) || DisplayAsReplace)
             {
                 base.OnDrawElementContent(position, serializedProperty, index, isActive, isFocused);
             }
