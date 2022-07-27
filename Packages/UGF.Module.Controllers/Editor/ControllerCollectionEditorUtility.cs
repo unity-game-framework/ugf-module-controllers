@@ -11,6 +11,13 @@ namespace UGF.Module.Controllers.Editor
 {
     public static class ControllerCollectionEditorUtility
     {
+        public static void SortByPriority(List<ComponentIdReference<ControllerComponent>> components)
+        {
+            if (components == null) throw new ArgumentNullException(nameof(components));
+
+            components.Sort((x, y) => ControllerComponentCollectPriorityComparer.Default.Compare(x.Component, y.Component));
+        }
+
         public static void GetComponents(ICollection<ComponentIdReference<ControllerComponent>> components, Scene scene)
         {
             if (!scene.IsValid()) throw new ArgumentException("Value should be valid.", nameof(scene));
