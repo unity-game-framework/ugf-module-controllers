@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0-preview.2](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview.2) - 2022-07-27  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/17?closed=1)  
+    
+
+### Added
+
+- Add controller component collect priority ([#81](https://github.com/unity-game-framework/ugf-module-controllers/issues/81))  
+    - Add `ControllerComponentCollectPriorityAttribute` attribute class used to mark controller components with sort priority for controller collection component.
+    - Add `ControllerComponentCollectPriorityComparer` class as default implementation of comparing of two components with priority attribute.
+    - Add `ControllerCollectionEditorUtility.SortByPriority()` method to sort specified collection by priority attributes.
+    - Add `ControllerCollectionControllerComponent` inspector _Sort_ button used to sort collection of controllers.
+    - Change `ControllerCollectionControllerComponent` inspector _Collect_ and _Collect in Scene_ buttons to additionally sort collected components.
+
+### Fixed
+
+- Fix controller collection collect in prefab mode ([#82](https://github.com/unity-game-framework/ugf-module-controllers/issues/82))  
+    - Update dependencies: `com.ugf.application` to `8.3.1`, `com.ugf.runtimetools` to `2.10.0` and `com.ugf.editortools` to `2.8.4` versions.
+    - Fix `ControllerCollectionEditorUtility.GetComponents()` methods to skip components without file id.
+
 ## [4.0.0-preview.1](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview.1) - 2022-07-14  
 
 ### Release Notes
