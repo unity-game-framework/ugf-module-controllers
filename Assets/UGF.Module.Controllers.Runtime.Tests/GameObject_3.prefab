@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8740380960594067494}
   - component: {fileID: 6081905758815385259}
   - component: {fileID: 7949793458492516315}
-  - component: {fileID: 901575762254454854}
+  - component: {fileID: 1387089452565942771}
   m_Layer: 0
   m_Name: GameObject_3
   m_TagString: Untagged
@@ -93,9 +93,9 @@ MonoBehaviour:
       m_value: 6081905758815385259
     m_component: {fileID: 6081905758815385259}
   - m_fileId:
-      m_value: 901575762254454854
-    m_component: {fileID: 901575762254454854}
---- !u!114 &901575762254454854
+      m_value: 1387089452565942771
+    m_component: {fileID: 1387089452565942771}
+--- !u!114 &1387089452565942771
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
