@@ -1,6 +1,7 @@
 ﻿using UGF.EditorTools.Editor.ComponentReferences;
 using UGF.EditorTools.Editor.IMGUI;
 using UGF.EditorTools.Editor.IMGUI.Scopes;
+using UGF.EditorTools.Runtime.ComponentReferences;
 using UGF.Module.Controllers.Runtime;
 using UnityEditor;
 using UnityEngine;
@@ -79,7 +80,10 @@ namespace UGF.Module.Controllers.Editor
 
             ControllerCollectionEditorUtility.GetComponents(component.Controllers, component.gameObject.scene);
 
-            component.Controllers.Remove(ControllerCollectionEditorUtility.GetReference(component));
+            if (ControllerCollectionEditorUtility.TryGetReference(component, out ComponentIdReference<ControllerComponent> reference))
+            {
+                component.Controllers.Remove(reference);
+            }
 
             serializedObject.Update();
         }
