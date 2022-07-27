@@ -34,7 +34,10 @@ namespace UGF.Module.Controllers.Editor
 
             buffer.Clear();
 
-            components.Remove(GetReference(component));
+            if (TryGetReference(component, out ComponentIdReference<ControllerComponent> reference))
+            {
+                components.Remove(reference);
+            }
         }
 
         public static void GetComponents(ICollection<ComponentIdReference<ControllerComponent>> components, GameObject gameObject)
@@ -44,7 +47,10 @@ namespace UGF.Module.Controllers.Editor
 
             if (gameObject.TryGetComponent(out ControllerCollectionControllerComponent collection))
             {
-                components.Add(GetReference(collection));
+                if (TryGetReference(collection, out ComponentIdReference<ControllerComponent> reference))
+                {
+                    components.Add(reference);
+                }
             }
             else
             {
@@ -57,13 +63,20 @@ namespace UGF.Module.Controllers.Editor
             }
         }
 
-        internal static ComponentIdReference<ControllerComponent> GetReference(ControllerComponent component)
+        internal static bool TryGetReference(ControllerComponent component, out ComponentIdReference<ControllerComponent> reference)
         {
             if (component == null) throw new ArgumentNullException(nameof(component));
 
-            ulong id = FileIdEditorUtility.GetFileId(component);
+            var id = new FileId(FileIdEditorUtility.GetFileId(component));
 
-            return new ComponentIdReference<ControllerComponent>(new FileId(id), component);
+            if (id.IsValid())
+            {
+                reference = new ComponentIdReference<ControllerComponent>(id, component);
+                return true;
+            }
+
+            reference = default;
+            return false;
         }
 
         private static void GetComponentsInChildren(ICollection<ComponentIdReference<ControllerComponent>> components, Transform transform, List<ControllerComponent> buffer)
@@ -79,7 +92,10 @@ namespace UGF.Module.Controllers.Editor
 
                 if (childGameObject.TryGetComponent(out ControllerCollectionControllerComponent collection))
                 {
-                    components.Add(GetReference(collection));
+                    if (TryGetReference(collection, out ComponentIdReference<ControllerComponent> reference))
+                    {
+                        components.Add(reference);
+                    }
                 }
                 else
                 {
@@ -101,9 +117,9 @@ namespace UGF.Module.Controllers.Editor
             {
                 ControllerComponent component = buffer[i];
 
-                if (component != null)
+                if (component != null && TryGetReference(component, out ComponentIdReference<ControllerComponent> reference))
                 {
-                    components.Add(GetReference(component));
+                    components.Add(reference);
                 }
             }
 
