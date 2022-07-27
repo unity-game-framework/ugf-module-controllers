@@ -42,6 +42,11 @@ namespace UGF.Module.Controllers.Editor
             {
                 GUILayout.FlexibleSpace();
 
+                if (GUILayout.Button("Sort"))
+                {
+                    OnSort();
+                }
+
                 if (GUILayout.Button("Clear"))
                 {
                     OnClear();
@@ -67,6 +72,7 @@ namespace UGF.Module.Controllers.Editor
             EditorUtility.SetDirty(target);
 
             ControllerCollectionEditorUtility.GetComponents(component.Controllers, component);
+            ControllerCollectionEditorUtility.SortByPriority(component.Controllers);
 
             serializedObject.Update();
         }
@@ -79,6 +85,7 @@ namespace UGF.Module.Controllers.Editor
             EditorUtility.SetDirty(target);
 
             ControllerCollectionEditorUtility.GetComponents(component.Controllers, component.gameObject.scene);
+            ControllerCollectionEditorUtility.SortByPriority(component.Controllers);
 
             if (ControllerCollectionEditorUtility.TryGetReference(component, out ComponentIdReference<ControllerComponent> reference))
             {
@@ -92,6 +99,18 @@ namespace UGF.Module.Controllers.Editor
         {
             m_listControllers.SerializedProperty.ClearArray();
             m_listControllers.SerializedProperty.serializedObject.ApplyModifiedProperties();
+        }
+
+        private void OnSort()
+        {
+            var component = (ControllerCollectionControllerComponent)target;
+
+            Undo.RegisterCompleteObjectUndo(target, "Controller Collection Sort");
+            EditorUtility.SetDirty(target);
+
+            ControllerCollectionEditorUtility.SortByPriority(component.Controllers);
+
+            serializedObject.Update();
         }
     }
 }
