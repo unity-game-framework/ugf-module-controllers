@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "com.ugf.application": "8.3.1",
-    "com.ugf.runtimetools": "2.10.0",
-    "com.ugf.editortools": "2.9.0"
+    "com.ugf.runtimetools": "2.17.0",
+    "com.ugf.editortools": "2.13.0"
   }
 }
