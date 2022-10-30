@@ -43,8 +43,6 @@ namespace UGF.Module.Controllers.Editor
                 m_listControllers.DrawGUILayout();
                 m_listControllersSelection.DrawGUILayout();
             }
-
-            m_listControllers.DrawReplaceControlsLayout();
         }
     }
 }
