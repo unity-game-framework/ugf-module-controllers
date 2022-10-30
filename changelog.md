@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0-preview.4](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview.4) - 2022-10-30  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/19?closed=1)  
+    
+
+### Changed
+
+- Change usage of asset id reference list replace controls ([#88](https://github.com/unity-game-framework/ugf-module-controllers/issues/88))  
+    - Update dependencies: `com.ugf.runtimetools` to `2.17.0` and `com.ugf.editortools` to `2.13.0` versions.
+    - Fix `ControllerCollectionAssetEditor` class deprecated methods usage.
+
 ## [4.0.0-preview.3](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview.3) - 2022-07-29  
 
 ### Release Notes
