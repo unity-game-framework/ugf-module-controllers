@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0-preview.5](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview.5) - 2022-11-04  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/20?closed=1)  
+    
+
+### Added
+
+- Add controller access component ([#90](https://github.com/unity-game-framework/ugf-module-controllers/issues/90))  
+    - Add `ControllerAccessComponent` class as component with access to the specified controller.
+
 ## [4.0.0-preview.4](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview.4) - 2022-10-30  
 
 ### Release Notes
