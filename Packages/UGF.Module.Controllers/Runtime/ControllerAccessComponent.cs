@@ -16,14 +16,21 @@ namespace UGF.Module.Controllers.Runtime
         public GlobalId ControllerId { get { return m_controller; } set { m_controller = value; } }
         public IController Controller { get { return GetController(); } }
 
+        private IController m_instance;
+
+        private void Start()
+        {
+            GetController();
+        }
+
         public T GetController<T>() where T : class, IController
         {
-            return m_applicationAccess.GetApplication().GetController<T>(m_controller);
+            return (T)GetController();
         }
 
         public IController GetController()
         {
-            return m_applicationAccess.GetApplication().GetController(m_controller);
+            return m_instance ??= m_applicationAccess.GetApplication().GetController(m_controller);
         }
     }
 }
