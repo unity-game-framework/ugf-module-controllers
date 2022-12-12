@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.0.0-preview.7](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview.7) - 2022-12-12  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/22?closed=1)  
+    
+
+### Added
+
+- Add controller collection nested support ([#94](https://github.com/unity-game-framework/ugf-module-controllers/issues/94))  
+    - Update dependencies: `com.ugf.application` to `8.4.0`, `com.ugf.runtimetools` to `2.18.0` and `com.ugf.editortools` to `2.14.0` versions.
+    - Add `ControllerCollectionListAsset` class as implementation and replacement of abstract `ControllerCollectionAsset` class with nested collections support.
+    - Change `ControllerCollectionAsset` class to be abstract and define `GetControllers()` method to collection controllers.
+
 ## [4.0.0-preview.6](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0-preview.6) - 2022-11-08  
 
 ### Release Notes
