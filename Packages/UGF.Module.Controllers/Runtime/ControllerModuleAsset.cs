@@ -35,12 +35,7 @@ namespace UGF.Module.Controllers.Runtime
             {
                 ControllerCollectionAsset collection = m_collections[i];
 
-                for (int j = 0; j < collection.Controllers.Count; j++)
-                {
-                    AssetIdReference<ControllerAsset> reference = collection.Controllers[j];
-
-                    description.Controllers.Add(reference.Guid, reference.Asset);
-                }
+                collection.GetControllers(description.Controllers);
             }
 
             return description;

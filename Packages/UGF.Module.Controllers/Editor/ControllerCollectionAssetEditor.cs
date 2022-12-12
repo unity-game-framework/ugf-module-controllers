@@ -6,7 +6,7 @@ using UnityEditor;
 
 namespace UGF.Module.Controllers.Editor
 {
-    [CustomEditor(typeof(ControllerCollectionAsset), true)]
+    [CustomEditor(typeof(ControllerCollectionListAsset), true)]
     internal class ControllerCollectionAssetEditor : UnityEditor.Editor
     {
         private AssetIdReferenceListDrawer m_listControllers;

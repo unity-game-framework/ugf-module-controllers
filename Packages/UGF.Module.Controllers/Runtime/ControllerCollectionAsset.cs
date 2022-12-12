@@ -1,14 +1,19 @@
-﻿using System.Collections.Generic;
-using UGF.EditorTools.Runtime.Assets;
+﻿using System;
+using System.Collections.Generic;
+using UGF.EditorTools.Runtime.Ids;
 using UnityEngine;
 
 namespace UGF.Module.Controllers.Runtime
 {
-    [CreateAssetMenu(menuName = "Unity Game Framework/Controllers/Controller Collection", order = 2000)]
-    public class ControllerCollectionAsset : ScriptableObject
+    public abstract class ControllerCollectionAsset : ScriptableObject
     {
-        [SerializeField] private List<AssetIdReference<ControllerAsset>> m_controllers = new List<AssetIdReference<ControllerAsset>>();
+        public void GetControllers(IDictionary<GlobalId, IControllerBuilder> controllers)
+        {
+            if (controllers == null) throw new ArgumentNullException(nameof(controllers));
 
-        public List<AssetIdReference<ControllerAsset>> Controllers { get { return m_controllers; } }
+            OnGetControllers(controllers);
+        }
+
+        protected abstract void OnGetControllers(IDictionary<GlobalId, IControllerBuilder> controllers);
     }
 }
