@@ -18,10 +18,7 @@ namespace UGF.Module.Controllers.Editor
 
             m_listControllersSelection = new ReorderableListSelectionDrawerByPath(m_listControllers, "m_asset")
             {
-                Drawer =
-                {
-                    DisplayTitlebar = true
-                }
+                Drawer = { DisplayTitlebar = true }
             };
 
             m_listControllers.Enable();
