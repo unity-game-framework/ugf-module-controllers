@@ -9,8 +9,10 @@ namespace UGF.Module.Controllers.Runtime
     public class ControllerCollectionListAsset : ControllerCollectionAsset
     {
         [SerializeField] private List<AssetIdReference<ControllerAsset>> m_controllers = new List<AssetIdReference<ControllerAsset>>();
+        [SerializeField] private List<ControllerCollectionAsset> m_collections = new List<ControllerCollectionAsset>();
 
         public List<AssetIdReference<ControllerAsset>> Controllers { get { return m_controllers; } }
+        public List<ControllerCollectionAsset> Collections { get { return m_collections; } }
 
         protected override void OnGetControllers(IDictionary<GlobalId, IControllerBuilder> controllers)
         {
@@ -19,6 +21,13 @@ namespace UGF.Module.Controllers.Runtime
                 AssetIdReference<ControllerAsset> reference = m_controllers[i];
 
                 controllers.Add(reference.Guid, reference.Asset);
+            }
+
+            for (int i = 0; i < m_collections.Count; i++)
+            {
+                ControllerCollectionAsset collection = m_collections[i];
+
+                collection.GetControllers(controllers);
             }
         }
     }
