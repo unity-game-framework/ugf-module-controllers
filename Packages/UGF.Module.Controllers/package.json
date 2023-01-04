@@ -21,6 +21,6 @@
   "dependencies": {
     "com.ugf.application": "8.4.0",
     "com.ugf.runtimetools": "2.18.0",
-    "com.ugf.editortools": "2.14.0"
+    "com.ugf.editortools": "2.15.0"
   }
 }
