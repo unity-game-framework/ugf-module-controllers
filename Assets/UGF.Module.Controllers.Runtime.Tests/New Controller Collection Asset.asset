@@ -14,10 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_controllers:
   - m_guid:
-      m_first: 13147346356519067822
-      m_second: 11464801677490702136
+      m_first: 5630805715589052298
+      m_second: 7100399218970679929
     m_asset: {fileID: 11400000, guid: 0cecb78aa3f74e24795a355a78af8962, type: 2}
+  - m_guid:
+      m_first: 8125899443776373131
+      m_second: 13421480388671469258
+    m_asset: {fileID: 11400000, guid: c2d5c18bfe7d70c4ca76a2ae4dad42ba, type: 2}
   - m_guid:
       m_first: 13147346356519067822
       m_second: 11464801677490702136
     m_asset: {fileID: 11400000, guid: 875860aec1dab67438c722ef61281b9f, type: 2}
+  m_collections: []
