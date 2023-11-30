@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.1.0-preview](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.1.0-preview) - 2023-11-30  
+
+### Release Notes
+
+- [Milestone](https://github.com/unity-game-framework/ugf-module-controllers/milestone/24?closed=1)  
+    
+
+### Added
+
+- Add controller folder ([#98](https://github.com/unity-game-framework/ugf-module-controllers/issues/98))  
+    - Update dependencies: `com.ugf.application` to `8.5.0`, `com.ugf.runtimetools` to `3.0.0-preview`, `com.ugf.editortools` to `3.0.0-preview` and add `com.ugf.assets` of `1.0.0-preview.2` version.
+    - Update package _Unity_ version to `2023.2`.
+    - Update package registry to _UPM Hub_.
+    - Add `ControllerIdCollectionAsset` abstract class as collection to store controller ids.
+    - Add `ControllerIdCollectionListAsset` class as implementation of `ControllerIdCollectionAsset` class to store collection as list.
+    - Add `ControllerCollectionListFolderAsset` and `ControllerIdCollectionListFolderAsset` classes as asset folders for controller collections.
+
 ## [4.0.0](https://github.com/unity-game-framework/ugf-module-controllers/releases/tag/4.0.0) - 2023-01-04  
 
 ### Release Notes
